@@ -26,6 +26,61 @@
     --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+/* ==========================================
+   Contact 页面 - Select 下拉框颜色修复
+   ========================================== */
+
+/* Select 下拉框基础样式 */
+.form-select {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid var(--border-glass) !important;
+    color: var(--text-primary) !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236A7F9F' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px !important;
+}
+
+/* Select 下拉框悬停 */
+.form-select:hover {
+    border-color: rgba(0, 240, 255, 0.3);
+}
+
+/* Select 下拉框聚焦 */
+.form-select:focus {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Select 下拉框选项 (下拉菜单) */
+.form-select option {
+    background-color: #0E1626 !important;
+    color: var(--text-primary) !important;
+    padding: 10px !important;
+}
+
+/* Select 下拉框选项悬停 (部分浏览器支持) */
+.form-select option:hover {
+    background-color: rgba(0, 240, 255, 0.1) !important;
+}
+
+/* Select 下拉框 - 占位文字 (第一个选项) */
+.form-select option[value=""] {
+    color: var(--text-muted) !important;
+}
+
+/* Select 下拉框 - 禁用状态 */
+.form-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 /* 金色渐变 */
 .text-gold-gradient {
     background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
