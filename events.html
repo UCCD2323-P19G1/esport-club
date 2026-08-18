@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +10,9 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- 保留原有内联样式 (只保留 .records-panel) -->
     <style>
-        /* 报名记录面板 (Registered Records Box) */
         .records-panel {
             background: rgba(20, 20, 48, 0.8);
             border: 1px dashed #ffd700;
@@ -21,49 +21,127 @@
         }
     </style>
 </head>
-<body style="background-color: #0a0e27; color: #ffffff;">
+<body>
 
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="fas fa-gamepad me-2"></i>E-Sports Club</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tournaments.html">Tournaments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="team.html">Team & Players</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="events.html">Events</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
+    <!-- ==========================================
+    顶部导航栏 (Top Navbar)
+    ========================================== -->
+    <header class="top-navbar">
+        <a href="index.html" class="brand">
+            <i class="fas fa-gamepad"></i>
+            E-Sports Club
+        </a>
+
+        <div class="account-section">
+            <div id="authButtons">
+                <button class="auth-btn account-btn" onclick="openAuthModal('login')">
+                    <i class="fas fa-user-circle me-1"></i> Account
+                </button>
+            </div>
+            <div id="userAvatarTop" class="user-avatar-top" style="display:none;">
+                <span id="userInitialTop">U</span>
+                <div class="dropdown-menu-top">
+                    <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#"><i class="fas fa-trophy"></i> My Tournaments</a>
+                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="danger" onclick="handleLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
             </div>
         </div>
+    </header>
+
+    <!-- ==========================================
+    左侧侧边栏 (Sidebar)
+    ========================================== -->
+    <nav class="sidebar" id="mainSidebar">
+        <div class="sidebar-brand">
+            <a href="index.html" class="brand-icon">
+                <i class="fas fa-gamepad"></i>
+            </a>
+            <span class="brand-short">ESC</span>
+        </div>
+
+        <a href="index.html" class="nav-link-side">
+            <i class="fas fa-home"></i>
+            <span class="link-label">Home</span>
+        </a>
+        <a href="about.html" class="nav-link-side">
+            <i class="fas fa-info-circle"></i>
+            <span class="link-label">About</span>
+        </a>
+        <a href="tournaments.html" class="nav-link-side">
+            <i class="fas fa-trophy"></i>
+            <span class="link-label">Tournaments</span>
+        </a>
+        <a href="team.html" class="nav-link-side">
+            <i class="fas fa-users"></i>
+            <span class="link-label">Team & Players</span>
+        </a>
+        <a href="events.html" class="nav-link-side active">
+            <i class="fas fa-calendar-check"></i>
+            <span class="link-label">Events</span>
+        </a>
+        <a href="gallery.html" class="nav-link-side">
+            <i class="fas fa-images"></i>
+            <span class="link-label">Gallery</span>
+        </a>
+        <a href="news.html" class="nav-link-side">
+            <i class="fas fa-newspaper"></i>
+            <span class="link-label">News</span>
+        </a>
+        <a href="contact.html" class="nav-link-side">
+            <i class="fas fa-envelope"></i>
+            <span class="link-label">Contact</span>
+        </a>
     </nav>
 
-    <!-- Header Section -->
+    <!-- 移动端底部导航 -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-link-mobile">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="tournaments.html" class="nav-link-mobile">
+            <i class="fas fa-trophy"></i><span>Events</span>
+        </a>
+        <a href="team.html" class="nav-link-mobile">
+            <i class="fas fa-users"></i><span>Team</span>
+        </a>
+        <a href="news.html" class="nav-link-mobile">
+            <i class="fas fa-newspaper"></i><span>News</span>
+        </a>
+        <a href="#" class="nav-link-mobile" onclick="openAuthModal('login'); return false;">
+            <i class="fas fa-user-circle"></i><span>Account</span>
+        </a>
+    </nav>
+
+    <!-- ==========================================
+    Header Section - 保留原版颜色
+    ========================================== -->
     <section class="hero-section text-center">
         <div class="container">
-            <h1 class="display-5 fw-bold"><span class="gold">Upcoming</span> <span class="purple">Events</span></h1>
+            <h1 class="display-5 fw-bold typing-text">
+                <span class="text-gold-gradient">Upcoming Events</span>
+            </h1>
             <p style="color:#a0a0c0;">Join our community workshops, watch parties, local tournaments, and live streams.</p>
         </div>
     </section>
 
-    <!-- 赛事活动列表 Section -->
+    <!-- ==========================================
+    赛事活动列表 Section - 保留原版颜色
+    ========================================== -->
     <section class="py-5">
         <div class="container">
             <div class="row g-4">
-                
+
                 <!-- Event 1 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3">
-                                <span class="badge bg-purple" style="background:#8b5cf6;">Workshop</span>
+                                <span class="badge" style="background:#8b5cf6; color:#ffffff;">Workshop</span>
                             </div>
                             <h5 class="card-title text-white fw-bold">VALORANT Tactical Coaching Bootcamp</h5>
                             <p class="small" style="color:#ffd700;"><i class="far fa-calendar-alt me-2"></i>August 25, 2026 | 2:00 PM</p>
@@ -85,7 +163,7 @@
                     <div class="card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3">
-                                <span class="badge" style="background:#e47702; color:#0a0e27;">Watch Party</span>
+                                <span class="badge" style="background:#ffd700; color:#0a0e27;">Watch Party</span>
                             </div>
                             <h5 class="card-title text-white fw-bold">World Championship Finals Watch Party</h5>
                             <p class="small" style="color:#ffd700;"><i class="far fa-calendar-alt me-2"></i>September 05, 2026 | 6:00 PM</p>
@@ -107,7 +185,7 @@
                     <div class="card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3">
-                                <span class="badge" style="background:#0073ff; color:#0a0e27;">Community League</span>
+                                <span class="badge" style="background:#00d4ff; color:#0a0e27;">Community League</span>
                             </div>
                             <h5 class="card-title text-white fw-bold">1v1 Mid-Lane League Showdown</h5>
                             <p class="small" style="color:#ffd700;"><i class="far fa-calendar-alt me-2"></i>September 18, 2026 | 4:00 PM</p>
@@ -151,7 +229,7 @@
                     <div class="card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3">
-                                <span class="badge" style="background:#139000; color:#0a0e27;">Mobile League</span>
+                                <span class="badge" style="background:#2ed573; color:#0a0e27;">Mobile League</span>
                             </div>
                             <h5 class="card-title text-white fw-bold">MLBB Mobile Masters Qualifier</h5>
                             <p class="small" style="color:#ffd700;"><i class="far fa-calendar-alt me-2"></i>October 15, 2026 | 3:00 PM</p>
@@ -173,7 +251,7 @@
                     <div class="card h-100 p-3">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3">
-                                <span class="badge" style="background:#8b5cf6;">Meet & Greet</span>
+                                <span class="badge" style="background:#8b5cf6; color:#ffffff;">Meet & Greet</span>
                             </div>
                             <h5 class="card-title text-white fw-bold">Pro Player Fan Meet & Sign Session</h5>
                             <p class="small" style="color:#ffd700;"><i class="far fa-calendar-alt me-2"></i>November 01, 2026 | 5:00 PM</p>
@@ -192,12 +270,12 @@
 
             </div>
 
-            <!-- 🌟 新增：我的已报名活动列表面板 (My Registered Events Box) -->
+            <!-- 🌟 My Registered Events Panel (保留原版) -->
             <div class="mt-5 pt-3">
                 <div class="records-panel">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="gold m-0"><i class="fas fa-ticket-alt me-2"></i>My Registered Events</h4>
-                        <span class="badge bg-purple" id="registered-count-badge">0 Registered</span>
+                        <h4 style="color:#ffd700; margin:0;"><i class="fas fa-ticket-alt me-2"></i>My Registered Events</h4>
+                        <span class="badge" style="background:#8b5cf6; color:#ffffff;" id="registered-count-badge">0 Registered</span>
                     </div>
                     <div id="registered-list-container">
                         <!-- 报名记录会在这里动态生成 -->
@@ -208,34 +286,36 @@
         </div>
     </section>
 
-    <!-- Event Registration Modal -->
+    <!-- ==========================================
+    Event Registration Modal (保留原版)
+    ========================================== -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title gold fw-bold" id="modalEventTitle">Event Registration</h5>
+                    <h5 class="modal-title" style="color:#ffd700; font-weight:bold;" id="modalEventTitle">Event Registration</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="eventRegistrationForm" onsubmit="handleRegistrationSubmit(event)">
                     <div class="modal-body">
                         <input type="hidden" id="modalEventId" />
-                        
+
                         <div class="mb-3">
-                            <label for="regName" class="form-label">Full Name</label>
+                            <label for="regName" class="form-label" style="color:#e0e0e0; font-weight:600;">Full Name</label>
                             <input type="text" class="form-control" id="regName" placeholder="Enter your full name" required />
                         </div>
                         <div class="mb-3">
-                            <label for="regEmail" class="form-label">Email Address</label>
+                            <label for="regEmail" class="form-label" style="color:#e0e0e0; font-weight:600;">Email Address</label>
                             <input type="email" class="form-control" id="regEmail" placeholder="Enter your email address" required />
                         </div>
                         <div class="mb-3">
-                            <label for="regGamertag" class="form-label">Gamer Tag / IGN</label>
+                            <label for="regGamertag" class="form-label" style="color:#e0e0e0; font-weight:600;">Gamer Tag / IGN</label>
                             <input type="text" class="form-control" id="regGamertag" placeholder="e.g. ShadowFaker#1234" required />
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-gold py-2 px-4 fw-bold">
+                        <button type="submit" class="btn" style="background-color:#ffd700; color:#0a0e27; font-weight:bold; border:none; padding:10px 24px;">
                             <i class="fas fa-check-circle me-1"></i> Submit Registration
                         </button>
                     </div>
@@ -244,12 +324,113 @@
         </div>
     </div>
 
-    <!-- 页脚 Footer -->
+    <!-- ==========================================
+    登录/注册弹窗
+    ========================================== -->
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="close-btn" onclick="closeAuthModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="auth-logo">
+                <i class="fas fa-gamepad"></i>
+                <h2>E-Sports Club</h2>
+                <p>Sign in to access your dashboard</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login" onclick="switchAuthTab('login')">Sign In</button>
+                <button class="tab-btn" data-tab="register" onclick="switchAuthTab('register')">Create Account</button>
+            </div>
+
+            <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="loginEmail" placeholder="you@example.com" required />
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="loginPassword" placeholder="••••••••" required />
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" /> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </button>
+                <div class="switch-text">
+                    Don't have an account? <a onclick="switchAuthTab('register')">Sign up</a>
+                </div>
+            </form>
+
+            <form class="auth-form hidden" id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="regName" placeholder="John Doe" required />
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="regEmail" placeholder="you@example.com" required />
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regConfirm" placeholder="Confirm password" required />
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-user-plus me-2"></i>Create Account
+                </button>
+                <div class="switch-text">
+                    Already have an account? <a onclick="switchAuthTab('login')">Sign in</a>
+                </div>
+            </form>
+
+            <div class="divider">or continue with</div>
+
+            <div class="social-login">
+                <button class="google" onclick="socialLogin('Google')">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="discord" onclick="socialLogin('Discord')">
+                    <i class="fab fa-discord"></i> Discord
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+    页脚 Footer (保留原版样式)
+    ========================================== -->
     <footer style="background-color: #070a1c; border-top: 2px solid #6c2bd9;" class="py-5">
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-4">
-                    <h5 class="text-white"><i class="fas fa-gamepad me-2 text-gold"></i>E-Sports Club</h5>
+                    <h5 class="text-white"><i class="fas fa-gamepad me-2" style="color:#ffd700;"></i>E-Sports Club</h5>
                     <p style="color:#a0a0c0;">Building champions, creating legends. Join our community and compete at the highest level.</p>
                     <div class="social-links d-flex gap-3">
                         <a href="https://www.facebook.com" target="_blank" style="color:#ffd700;"><i class="fab fa-facebook-f"></i></a>
@@ -278,11 +459,11 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white"><i class="fas fa-envelope me-2 text-gold"></i>Stay Updated</h5>
+                    <h5 class="text-white"><i class="fas fa-envelope me-2" style="color:#ffd700;"></i>Stay Updated</h5>
                     <p style="color:#a0a0c0;">Subscribe to our newsletter for the latest updates.</p>
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Your email" style="border-radius:50px 0 0 50px;">
-                        <button class="btn btn-gold" style="border-radius:0 50px 50px 0;" onclick="subscribeNewsletter()">
+                        <input type="email" class="form-control" placeholder="Your email" style="border-radius:50px 0 0 50px; background:#0d0d26; color:#fff; border:1px solid #6c2bd9;">
+                        <button class="btn" style="border-radius:0 50px 50px 0; background-color:#ffd700; color:#0a0e27; border:none;" onclick="subscribeNewsletter()">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
@@ -297,9 +478,201 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/effects.js"></script>
 
-    <!-- 动态注册与取消注册逻辑 -->
+    <!-- ==========================================
+    动态注册与取消注册逻辑 (保留原版，一摸一样)
+    ========================================== -->
     <script>
+        // ==========================================
+        // 🔐 登录/注册功能 (与 index 一致)
+        // ==========================================
+
+        function openAuthModal(tab) {
+            document.getElementById('authModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            if (tab === 'register') {
+                switchAuthTab('register');
+            } else {
+                switchAuthTab('login');
+            }
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAuthModal();
+        });
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach(btn => btn.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                document.querySelector('.tab-btn[data-tab="login"]').classList.add('active');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                document.querySelector('.tab-btn[data-tab="register"]').classList.add('active');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!email || !password) {
+                showToast('⚠️ Please fill in all fields.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('esports_users')) || [];
+            const foundUser = users.find(u => u.email === email && u.password === password);
+
+            if (foundUser) {
+                const session = { name: foundUser.name, email: foundUser.email, loggedIn: true };
+                localStorage.setItem('esports_session', JSON.stringify(session));
+                updateUserUI(session);
+                closeAuthModal();
+                showToast('✅ Welcome back, ' + foundUser.name + '!');
+                document.getElementById('loginForm').reset();
+            } else {
+                const userExists = users.some(u => u.email === email);
+                if (userExists) {
+                    showToast('❌ Incorrect password. Please try again.');
+                } else {
+                    showToast('❌ No account found with this email. Please register.');
+                }
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+
+            if (!name || !email || !password || !confirm) {
+                showToast('⚠️ Please fill in all fields.');
+                return;
+            }
+            if (password.length < 6) {
+                showToast('⚠️ Password must be at least 6 characters.');
+                return;
+            }
+            if (password !== confirm) {
+                showToast('⚠️ Passwords do not match.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('esports_users')) || [];
+            if (users.some(u => u.email === email)) {
+                showToast('❌ This email is already registered. Please login.');
+                return;
+            }
+
+            users.push({ name, email, password });
+            localStorage.setItem('esports_users', JSON.stringify(users));
+
+            const session = { name, email, loggedIn: true };
+            localStorage.setItem('esports_session', JSON.stringify(session));
+            updateUserUI(session);
+            closeAuthModal();
+            showToast('🎉 Welcome, ' + name + '! Your account has been created.');
+            document.getElementById('registerForm').reset();
+        }
+
+        function handleLogout(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to sign out?')) {
+                localStorage.removeItem('esports_session');
+                updateUserUI(null);
+                showToast('👋 You have been signed out.');
+            }
+        }
+
+        function socialLogin(provider) {
+            const session = {
+                name: provider + '_User',
+                email: provider.toLowerCase() + '@example.com',
+                loggedIn: true
+            };
+            localStorage.setItem('esports_session', JSON.stringify(session));
+            updateUserUI(session);
+            closeAuthModal();
+            showToast('✅ Signed in with ' + provider + '!');
+        }
+
+        function updateUserUI(session) {
+            const authButtons = document.getElementById('authButtons');
+            const userAvatar = document.getElementById('userAvatarTop');
+            const userInitial = document.getElementById('userInitialTop');
+
+            if (session && session.loggedIn) {
+                authButtons.style.display = 'none';
+                userAvatar.style.display = 'flex';
+                userInitial.textContent = session.name.charAt(0).toUpperCase();
+            } else {
+                authButtons.style.display = 'flex';
+                userAvatar.style.display = 'none';
+            }
+        }
+
+        function showToast(message) {
+            let container = document.querySelector('.toast-container-custom');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'toast-container-custom';
+                container.style.cssText = `
+                    position: fixed;
+                    bottom: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 999999;
+                    background: rgba(14, 22, 38, 0.95);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 14px;
+                    padding: 16px 28px;
+                    color: #fff;
+                    font-weight: 500;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(20px);
+                    pointer-events: none;
+                    font-family: 'Inter', sans-serif;
+                    max-width: 90%;
+                    text-align: center;
+                `;
+                document.body.appendChild(container);
+            }
+
+            container.textContent = message;
+            container.style.opacity = '1';
+            container.style.transform = 'translateX(-50%) translateY(0)';
+
+            clearTimeout(container._timeout);
+            container._timeout = setTimeout(() => {
+                container.style.opacity = '0';
+                container.style.transform = 'translateX(-50%) translateY(20px)';
+            }, 3500);
+        }
+
+        // ==========================================
+        // 事件注册功能 (保留原版，一摸一样)
+        // ==========================================
+
         // 活动名称词典数据
         const eventTitles = {
             1: "VALORANT Tactical Coaching Bootcamp",
@@ -312,6 +685,25 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             checkRegisteredEvents();
+
+            // 侧边栏高亮当前页面
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link-side, .nav-link-mobile').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // 检查登录状态
+            const session = JSON.parse(localStorage.getItem('esports_session'));
+            if (session && session.loggedIn) {
+                updateUserUI(session);
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAuthModal();
         });
 
         var currentModalInstance = null;
@@ -354,7 +746,7 @@
             }
 
             document.getElementById('eventRegistrationForm').reset();
-            alert('🎉 Congratulations ' + name + '! You have successfully registered for this event.');
+            showToast('🎉 Congratulations ' + name + '! You have successfully registered for this event.');
             checkRegisteredEvents();
         }
 
@@ -427,15 +819,16 @@
         function subscribeNewsletter() {
             var emailInput = document.querySelector('.input-group input[type="email"]');
             var email = emailInput ? emailInput.value.trim() : '';
-            if (!email) { alert('⚠️ Please enter your email address.'); return; }
-            if (!email.includes('@') || !email.includes('.')) { alert('⚠️ Please enter a valid email address.'); return; }
+            if (!email) { showToast('⚠️ Please enter your email address.'); return; }
+            if (!email.includes('@') || !email.includes('.')) { showToast('⚠️ Please enter a valid email address.'); return; }
             var subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers')) || [];
-            if (subscribers.includes(email)) { alert('ℹ️ You are already subscribed!'); return; }
+            if (subscribers.includes(email)) { showToast('ℹ️ You are already subscribed!'); return; }
             subscribers.push(email);
             localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
-            alert('✅ Subscribed successfully! Thank you for joining our newsletter.');
+            showToast('✅ Subscribed successfully! Thank you for joining our newsletter.');
             emailInput.value = '';
         }
     </script>
+
 </body>
 </html>
