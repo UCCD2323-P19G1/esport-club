@@ -11,58 +11,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
-<body style="background-color: #0a0e27; color: #ffffff;">
+<body>
 
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="fas fa-gamepad me-2"></i>E-Sports Club</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tournaments.html">Tournaments</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="team.html">Team & Players</a></li>
-                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:1px solid #ffd700;border-radius:20px;padding:5px 15px;margin-left:10px;">
-        <i class="fas fa-user-circle"></i> Account
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" style="background:#141430;border:1px solid #ffd700;">
-        <li><a class="dropdown-item" href="#" onclick="alert('Login page coming soon!')"><i class="fas fa-sign-in-alt me-2"></i>Login</a></li>
-        <li><a class="dropdown-item" href="#" onclick="alert('Register page coming soon!')"><i class="fas fa-user-plus me-2"></i>Register</a></li>
-    </ul>
-</li>
-                </ul>
+    <!-- ==========================================
+    顶部导航栏 (Top Navbar)
+    ========================================== -->
+    <header class="top-navbar">
+        <a href="index.html" class="brand">
+            <i class="fas fa-gamepad"></i>
+            E-Sports Club
+        </a>
+
+        <div class="account-section">
+            <div id="authButtons">
+                <button class="auth-btn account-btn" onclick="openAuthModal('login')">
+                    <i class="fas fa-user-circle me-1"></i> Account
+                </button>
+            </div>
+            <div id="userAvatarTop" class="user-avatar-top" style="display:none;">
+                <span id="userInitialTop">U</span>
+                <div class="dropdown-menu-top">
+                    <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#"><i class="fas fa-trophy"></i> My Tournaments</a>
+                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="danger" onclick="handleLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
             </div>
         </div>
+    </header>
+
+    <!-- ==========================================
+    左侧侧边栏 (Sidebar)
+    ========================================== -->
+    <nav class="sidebar" id="mainSidebar">
+        <div class="sidebar-brand">
+            <a href="index.html" class="brand-icon">
+                <i class="fas fa-gamepad"></i>
+            </a>
+            <span class="brand-short">ESC</span>
+        </div>
+
+        <a href="index.html" class="nav-link-side">
+            <i class="fas fa-home"></i>
+            <span class="link-label">Home</span>
+        </a>
+        <a href="about.html" class="nav-link-side">
+            <i class="fas fa-info-circle"></i>
+            <span class="link-label">About</span>
+        </a>
+        <a href="tournaments.html" class="nav-link-side">
+            <i class="fas fa-trophy"></i>
+            <span class="link-label">Tournaments</span>
+        </a>
+        <a href="team.html" class="nav-link-side active">
+            <i class="fas fa-users"></i>
+            <span class="link-label">Team & Players</span>
+        </a>
+        <a href="events.html" class="nav-link-side">
+            <i class="fas fa-calendar-check"></i>
+            <span class="link-label">Events</span>
+        </a>
+        <a href="gallery.html" class="nav-link-side">
+            <i class="fas fa-images"></i>
+            <span class="link-label">Gallery</span>
+        </a>
+        <a href="news.html" class="nav-link-side">
+            <i class="fas fa-newspaper"></i>
+            <span class="link-label">News</span>
+        </a>
+        <a href="contact.html" class="nav-link-side">
+            <i class="fas fa-envelope"></i>
+            <span class="link-label">Contact</span>
+        </a>
     </nav>
 
-    <!-- Header Section -->
+    <!-- 移动端底部导航 -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-link-mobile">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="tournaments.html" class="nav-link-mobile">
+            <i class="fas fa-trophy"></i><span>Events</span>
+        </a>
+        <a href="team.html" class="nav-link-mobile">
+            <i class="fas fa-users"></i><span>Team</span>
+        </a>
+        <a href="news.html" class="nav-link-mobile">
+            <i class="fas fa-newspaper"></i><span>News</span>
+        </a>
+        <a href="#" class="nav-link-mobile" onclick="openAuthModal('login'); return false;">
+            <i class="fas fa-user-circle"></i><span>Account</span>
+        </a>
+    </nav>
+
+    <!-- ==========================================
+    Header Section - 保留原版颜色
+    ========================================== -->
     <section class="hero-section text-center">
         <div class="container">
-            <h1 class="display-5 fw-bold"><span class="gold" style="color:#ffd700;">Pro Teams</span> & <span class="purple" style="color:#a855f7;">Player Profiles</span></h1>
+            <h1 class="display-4 fw-bold mb-3 typing-text">
+                <span class="text-gradient">Pro Teams & Player Profiles</span>
+            </h1>
             <p style="color:#a0a0c0;">Explore rosters across 6 major esports leagues. Click any team logo to view players and full detailed profiles.</p>
 
-            <!-- 战队 & 选手 搜索框 -->
+            <!-- 搜索框 -->
             <div class="row justify-content-center my-4">
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="input-group search-input-group">
-                        <span class="input-group-text bg-dark border-secondary text-gold">
+                        <span class="input-group-text bg-dark border-secondary" style="color:#ffd700; background:rgba(255,255,255,0.04) !important; border:1px solid rgba(255,255,255,0.08) !important;">
                             <i class="fas fa-search"></i>
                         </span>
                         <input type="text" 
                                id="teamSearchInput" 
                                class="form-control bg-dark text-light border-secondary" 
-                               placeholder="搜索战队名称或选手 ID (例如: ONIC, KarlTzy, Ame...)" 
-                               onkeyup="filterTeamsAndRosters()">
-                        <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">
+                               placeholder="Search team name or player ID (e.g. ONIC, KarlTzy, Ame...)" 
+                               onkeyup="filterTeamsAndRosters()"
+                               style="background:rgba(255,255,255,0.04) !important; border:1px solid rgba(255,255,255,0.08) !important; color:#fff !important;">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()" style="border:1px solid rgba(255,255,255,0.08) !important; color:#a0a0c0 !important;">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -71,17 +139,17 @@
 
             <!-- 6大游戏项目 Tabs -->
             <div class="mt-4 flex-wrap d-flex justify-content-center gap-2">
-                <button class="btn btn-gold active game-tab-btn" onclick="filterDivision('all', this)">All Games (全部)</button>
-                <button class="btn btn-gold game-tab-btn" onclick="filterDivision('lpl', this)">LPL (英雄联盟)</button>
-                <button class="btn btn-gold game-tab-btn" onclick="filterDivision('kpl', this)">KPL (王者荣耀)</button>
-                <button class="btn btn-gold game-tab-btn" onclick="filterDivision('vct', this)">VALORANT (VCT)</button>
-                <button class="btn btn-gold game-tab-btn" onclick="filterDivision('cs2', this)">CS2 (反恐精英2)</button>
-                <button class="btn btn-gold game-tab-btn" onclick="filterDivision('dota2', this)">Dota 2 (刀塔2)</button>
-                <button class="btn btn-gold game-tab-btn" onclick="filterDivision('mlbb', this)">MLBB (决胜巅峰)</button>
+                <button class="btn btn-outline-primary active game-tab-btn" onclick="filterDivision('all', this)">All Games</button>
+                <button class="btn btn-outline-primary game-tab-btn" onclick="filterDivision('lpl', this)">LPL</button>
+                <button class="btn btn-outline-primary game-tab-btn" onclick="filterDivision('kpl', this)">KPL</button>
+                <button class="btn btn-outline-primary game-tab-btn" onclick="filterDivision('vct', this)">VALORANT</button>
+                <button class="btn btn-outline-primary game-tab-btn" onclick="filterDivision('cs2', this)">CS2</button>
+                <button class="btn btn-outline-primary game-tab-btn" onclick="filterDivision('dota2', this)">Dota 2</button>
+                <button class="btn btn-outline-primary game-tab-btn" onclick="filterDivision('mlbb', this)">MLBB</button>
             </div>
         </div>
-        
     </section>
+
 
     <!-- 战队 Logo Grid 网格区域 (包含真实补齐的各个战队) -->
 
@@ -104,6 +172,8 @@
                             {ign: 'Hope', name: 'Wang Jie', role: 'ADC', img: 'al_hope.png', bio: 'Consistent late-game marksman with high position awareness.', country: 'China', age: 24, hero: 'Zeri / Kai\'Sa / Aphelios'},
                             {ign: 'Kael', name: 'Kim Jin-hong', role: 'Support', img: 'al_kael.png', bio: 'Engage specialist creating clutch space for his carries.', country: 'South Korea', age: 22, hero: 'Nautilus / Rakan / Thresh'}
                         ])">
+                        <!-- 光环 -->
+                            <div class="logo-ring"></div>
                             <img src="al_logo.png" alt="AL" class="team-logo mb-2"/>
                             <p class="team-name-en">AL</p>
                             <p class="team-name-cn">Anyone's Legend</p>
@@ -119,13 +189,15 @@
                             {ign: 'Viper', name: 'Park Do-hyeon', role: 'ADC', img: 'blg_viper.png', bio: 'World-class ADC with exceptional mechanics and teamfight prowess.', country: 'South Korea', age: 23, hero: 'Xayah / Zeri / Kai\'Sa'},
                             {ign: 'ON', name: 'Luo Wen-Jun', role: 'Support', img: 'blg_on.png', bio: 'Playmaker roaming support with brilliant creative vision.', country: 'China', age: 21, hero: 'Alistar / Thresh / Rakan'}
                         ])">
+                         <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="blg_logo.png" alt="BLG" class="team-logo mb-2"/>
                             <p class="team-name-en">BLG</p>
                             <p class="team-name-cn">哔哩哔哩</p>
                         </div>
                     </div>
 
-                    <!-- 3. EDG -->
+                    <!-- 3. EDG (已更正：zdz, jiejie, bulldog, leave, parukia) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('EDG', 'EDward Gaming (EDG)', 'League of Legends (LPL)', 'edg_logo.png', [
                             {ign: 'Zdz', name: 'Zhu De-Zhang', role: 'Top', img: 'edg_zdz.png', bio: 'Sturdy top lane bruiser specialist holding the frontline.', country: 'China', age: 22, hero: 'K\'Sante / Renekton / Gnar'},
@@ -134,13 +206,15 @@
                             {ign: 'Leave', name: 'Hu Xian-Zhao', role: 'ADC', img: 'edg_leave.png', bio: 'Sharp mechanics marksman ready to explode in late game.', country: 'China', age: 21, hero: 'Aphelios / Jinx / Ezreal'},
                             {ign: 'Parukia', name: 'Park Woo-jin', role: 'Support', img: 'edg_parukia.png', bio: 'Reliable teamfighting support focused on peeling carries.', country: 'South Korea', age: 21, hero: 'Nautilus / Leona / Braum'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="edg_logo.png" alt="EDG" class="team-logo mb-2"/>
                             <p class="team-name-en">EDG</p>
                             <p class="team-name-cn">爱德华电竞</p>
                         </div>
                     </div>
 
-                    <!-- 4. iG -->
+                    <!-- 4. iG (已更正：the sky, wei, rookie, assum/jiaqi, mieiko) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('iG', 'Invictus Gaming (iG)', 'League of Legends (LPL)', 'ig_logo.png', [
                             {ign: 'The Sky', name: 'The Sky', role: 'Top', img: 'ig_theSKY.png', bio: 'Top lane competitor providing stable side-lane pressure.', country: 'China', age: 21, hero: 'Gwen / Kennen / Jax'},
@@ -149,6 +223,8 @@
                             {ign: 'Assum', name: 'Assum ', role: 'ADC', img: 'ig_assum.png', bio: 'Dynamic ADC rotation providing flexibility and consistent DPS.', country: 'China', age: 23, hero: 'Varus / Aphelios / Jinx'},
                             {ign: 'Meiko', name: 'Tian Ye', role: 'Support', img: 'ig_meiko.png', bio: 'World Champion legendary support maestro.', country: 'China', age: 25, hero: 'Rakan / Nautilus / Thresh'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="ig_logo.png" alt="iG" class="team-logo mb-2"/>
                             <p class="team-name-en">iG</p>
                             <p class="team-name-cn">IG战队</p>
@@ -164,13 +240,15 @@
                             {ign: 'GALA', name: 'Chen Wei', role: 'ADC', img: 'jdg_gala.png', bio: 'MSI champion marksman renowned for stellar teamfight positioning.', country: 'China', age: 23, hero: 'Kai\'Sa / Kalista / Varus'},
                             {ign: 'Vampire', name: 'Zhu Xiao-Long', role: 'Support', img: 'jdg_vampire.png', bio: 'Vision control support keeping the map well lit.', country: 'China', age: 22, hero: 'Nautilus / Braum / Alistar'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="jdg_logo.png" alt="JDG" class="team-logo mb-2"/>
                             <p class="team-name-en">JDG</p>
                             <p class="team-name-cn">北京JDG</p>
                         </div>
                     </div>
 
-                    <!-- 6. LGD -->
+                    <!-- 6. LGD (已更正：burdol, heng, tangyuan, shaoye, crisp) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('LGD', 'LGD Gaming', 'League of Legends (LPL)', 'lgd_logo.png', [
                             {ign: 'Burdol', name: 'Noh Tae-yoon', role: 'Top', img: 'lgd_burdol.png', bio: 'Experienced top laner with international stage experience.', country: 'South Korea', age: 20, hero: 'Gwen / Camille / Jax'},
@@ -179,13 +257,15 @@
                             {ign: 'Shaoye', name: 'Qiu Guo-Bin', role: 'ADC', img: 'lgd_shaoye.png', bio: 'Energetic marksman ready to make aggressive plays.', country: 'China', age: 21, hero: 'Jinx / Kai\'Sa / Lucian'},
                             {ign: 'Crisp', name: 'Liu Qing-Song', role: 'Support', img: 'lgd_crisp.png', bio: 'Worlds 2019 Champion support with immaculate vision and engages.', country: 'China', age: 25, hero: 'Nautilus / Thresh / Rakan'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="lgd_logo.png" alt="LGD" class="team-logo mb-2"/>
                             <p class="team-name-en">LGD</p>
                             <p class="team-name-cn">老干爹</p>
                         </div>
                     </div>
 
-                    <!-- 7. LNG -->
+                    <!-- 7. LNG (已更正：中路为nia) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('LNG', 'Suzhou LNG (苏州LNG)', 'League of Legends (LPL)', 'lng_logo.png', [
                             {ign: 'Sheer', name: 'Tang Hua-Yu', role: 'Top', img: 'lng_sheer.png', bio: 'Promising top lane prospect with immense upside.', country: 'China', age: 20, hero: 'Renekton / Jax / K\'Sante'},
@@ -194,13 +274,15 @@
                             {ign: '1xn', name: 'Li Xiu-Nan', role: 'ADC', img: 'lng_1xn.png', bio: 'Sharp positioning marksman dealing heavy backline damage.', country: 'China', age: 22, hero: 'Aphelios / Jinx / Ezreal'},
                             {ign: 'Missing', name: 'Miao Yi-Tian', role: 'Support', img: 'lng_missing.png', bio: 'Elite support with strong engage and teamfight direction.', country: 'China', age: 23, hero: 'Rakan / Nautilus / Alistar'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="lng_logo.png" alt="LNG" class="team-logo mb-2"/>
                             <p class="team-name-en">LNG</p>
                             <p class="team-name-cn">苏州LNG</p>
                         </div>
                     </div>
 
-                    <!-- 8. NIP -->
+                    <!-- 8. NIP (已更正：hoya, guwon, care, photic, fengyue) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('NIP', 'Shenzhen NIP (深圳NIP)', 'League of Legends (LPL)', 'nip_logo.png', [
                             {ign: 'HOYA', name: 'Yoon Yong-ho', role: 'Top', img: 'nip_hoya.png', bio: 'Solid fighter top laner with great tactical discipline.', country: 'South Korea', age: 23, hero: 'Gnar / Gwen / Rumble'},
@@ -209,6 +291,8 @@
                             {ign: 'Photic', name: 'Ying Qi-Shen', role: 'ADC', img: 'ig_photic.png', bio: 'High DPS teamfight marksman with lethal precision.', country: 'China', age: 23, hero: 'Varus / Aphelios / Jinx'},
                             {ign: 'Fengyue', name: 'Fengyue', role: 'Support', img: 'ig_fengyue.png', bio: 'Talented support player providing solid utility.', country: 'China', age: 21, hero: 'Thresh / Lulu / Rakan'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="nip_logo.png" alt="NIP" class="team-logo mb-2"/>
                             <p class="team-name-en">NIP</p>
                             <p class="team-name-cn">深圳NIP</p>
@@ -224,13 +308,15 @@
                             {ign: 'Starry', name: 'Starry', role: 'ADC', img: 'omg_starry.png', bio: 'Unorthodox high-risk ADC with explosive damage output.', country: 'China', age: 22, hero: 'Kog\'Maw / Draven / Kalista'},
                             {ign: 'Moham', name: 'Moham', role: 'Support', img: 'omg_moham.jpg', bio: 'Charismatic playmaker support bringing high energy.', country: 'China', age: 22, hero: 'Thresh / Lulu / Rakan'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="omg_logo.png" alt="OMG" class="team-logo mb-2"/>
                             <p class="team-name-en">OMG</p>
                             <p class="team-name-cn">无状态战队</p>
                         </div>
                     </div>
 
-                    <!-- 10. TES -->
+                    <!-- 10. TES (已更正：369, tian, creme, jackeylove, zhuo) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('TES', 'Top Esports (TES)', 'League of Legends (LPL)', 'tes_logo.png', [
                             {ign: '369', name: 'Bai Jia-Hao', role: 'Top', img: 'tes_369.png', bio: 'Versatile top laner skilled in both tanks and carries.', country: 'China', age: 22, hero: 'Gragas / Aatrox / K\'Sante'},
@@ -239,13 +325,15 @@
                             {ign: 'JackeyLove', name: 'Yu Wen-Bo', role: 'ADC', img: 'tes_jackey.png', bio: 'World Champion aggressive marksman with high-impact plays.', country: 'China', age: 23, hero: 'Draven / Ezreal / Kai\'Sa'},
                             {ign: 'Zhuo', name: 'Wang Zhuo-Wen', role: 'Support', img: 'tes_zhuo.png', bio: 'Tactical support ensuring smooth map control.', country: 'China', age: 23, hero: 'Nautilus / Leona / Rakan'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="tes_logo.png" alt="TES" class="team-logo mb-2"/>
                             <p class="team-name-en">TES</p>
                             <p class="team-name-cn">滔搏运动</p>
                         </div>
                     </div>
 
-                    <!-- 11. TT -->
+                    <!-- 11. TT (已更正：keshi, junhao, heru, ahn, feather) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('TT', 'ThunderTalk Gaming (TT)', 'League of Legends (LPL)', 'tt_logo.png', [
                             {ign: 'Keshi', name: 'Li Qing-Hua', role: 'Top', img: 'tt_keshi.png', bio: 'Young top lane talent showing great resilience.', country: 'China', age: 20, hero: 'Renekton / Jax / Gwen'},
@@ -254,6 +342,8 @@
                             {ign: 'Ahn', name: 'An Sun-ho', role: 'ADC', img: 'tt_ahn.png', bio: 'Reliable carry marksman with steady late-game damage.', country: 'South Korea', age: 21, hero: 'Aphelios / Jinx / Varus'},
                             {ign: 'Feather', name: 'Wang Tian-Cai', role: 'Support', img: 'tt_feather.png', bio: 'Dynamic utility support ensuring backline safety.', country: 'China', age: 21, hero: 'Rakan / Nautilus / Braum'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="tt_logo.png" alt="TT" class="team-logo mb-2"/>
                             <p class="team-name-en">TT</p>
                             <p class="team-name-cn">TT战队</p>
@@ -269,13 +359,15 @@
                             {ign: 'Hena', name: 'Hena', role: 'ADC', img: 'up_hena.jpg', bio: 'Flashy mechanical marksman with high playmaking flair.', country: 'South Korea', age: 21, hero: 'Tristana / Kai\'Sa / Lucian'},
                             {ign: 'Xiaoxia', name: 'Sun Xiao-Xia', role: 'Support', img: 'up_xiaoxia.png', bio: 'Clutch engage support initiating vital fights.', country: 'China', age: 22, hero: 'Nautilus / Thresh / Rakan'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="up_logo.png" alt="UP" class="team-logo mb-2"/>
                             <p class="team-name-en">UP</p>
                             <p class="team-name-cn">UP战队</p>
                         </div>
                     </div>
 
-                    <!-- 13. WBG -->
+                    <!-- 13. WBG (已更正：zika, xiaohao, xiaohu, elk, jwei/moham) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('WBG', 'Weibo Gaming (WBG)', 'League of Legends (LPL)', 'wbg_logo.png', [
                             {ign: 'Zika', name: 'Tang Hua-Yu', role: 'Top', img: 'wbg_zika.png', bio: 'Fearless top lane fighter excelling in duels.', country: 'China', age: 21, hero: 'Renekton / Jax / Gwen'},
@@ -284,13 +376,15 @@
                             {ign: 'Elk', name: 'Zhao Jia-Hao', role: 'ADC', img: 'wbg_elk.png', bio: 'Immaculate positioning marksman with hyper-carry skills.', country: 'China', age: 22, hero: 'Varus / Aphelios / Jinx'},
                             {ign: 'Jwei', name: 'Jwei', role: 'Support', img: 'wbg_jwei.png', bio: 'Dynamic support rotation controlling vision and engages.', country: 'China', age: 21, hero: 'Thresh / Rakan / Nautilus'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="wbg_logo.png" alt="WBG" class="team-logo mb-2"/>
                             <p class="team-name-en">WBG</p>
                             <p class="team-name-cn">微博电子竞技</p>
                         </div>
                     </div>
 
-                    <!-- 14. WE -->
+                    <!-- 14. WE (已更正：cube, monki, karis, about, erha) -->
                     <div class="col">
                         <div class="team-logo-card" onclick="openTeamRoster('WE', 'Xi\'an WE (西安WE)', 'League of Legends (LPL)', 'we_logo.png', [
                             {ign: 'Cube', name: 'Dai Yi', role: 'Top', img: 'we_cube.png', bio: 'Solid frontline top laner with stable execution.', country: 'China', age: 23, hero: 'Gnar / K\'Sante / Renekton'},
@@ -299,6 +393,8 @@
                             {ign: 'About', name: 'About', role: 'ADC', img: 'we_about.png', bio: 'Explosive teamfight carry eager to prove himself.', country: 'China', age: 22, hero: 'Lucian / Zeri / Aphelios'},
                             {ign: 'Erha', name: 'Erha', role: 'Support', img: 'we_erha.png', bio: 'Reliable support lock-down specialist.', country: 'China', age: 21, hero: 'Rakan / Nautilus / Thresh'}
                         ])">
+                        <!-- 光环 -->
+    <div class="logo-ring"></div>
                             <img src="we_logo.png" alt="WE" class="team-logo mb-2"/>
                             <p class="team-name-en">WE</p>
                             <p class="team-name-cn">西安WE</p>
@@ -329,6 +425,8 @@
                 {ign: '一诺', name: '徐必成', role: 'Farm / ADC', img: 'ag_yinuo.png', bio: 'KPL传奇射手，团队绝对输出核心，具备极强的开团大心脏。', country: '中国', age: 24, hero: '公孙离 / 孙尚香 / 戈娅'},
                 {ign: '大帅', name: '孟家俊', role: 'Roam / Support', img: 'ag_dashuai.png', bio: '指挥型游走天才，开团果断，视野布控盘活全队战术体系。', country: '中国', age: 20, hero: '朵莉亚 / 太乙真人 / 苏烈'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ag_logo.png" alt="AG" class="team-logo mb-2"/>
                 <p class="team-name-en">AG</p>
                 <p class="team-name-cn">成都AG超玩会</p>
@@ -344,6 +442,8 @@
                 {ign: '梦岚', name: '彭俊岚', role: 'Farm / ADC', img: 'drg_menglan.png', bio: '灵性射手天花板，极限拉扯与激进收割能力极强。', country: '中国', age: 23, hero: '公孙离 / 狄仁杰 / 鲁班七号'},
                 {ign: '子阳', name: '向阳', role: 'Roam / Support', img: 'drg_ziyang.png', bio: 'FMVP传奇辅助，大局观顶尖。', country: '中国', age: 24, hero: '鲁班大师 / 太乙真人 / 桑启'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="drg_logo.png" alt="DRG" class="team-logo mb-2"/>
                 <p class="team-name-en">DRG</p>
                 <p class="team-name-cn">佛山DRG</p>
@@ -359,6 +459,8 @@
                 {ign: '钎城', name: '周诣涛', role: 'Farm / ADC', img: 'dyg_qiancheng.png', bio: '老牌稳健射手，输出位置极其优秀。', country: '中国', age: 24, hero: '马可波罗 / 虞姬 / 狄仁杰'},
                 {ign: '落空', name: '周熙瑞', role: 'Roam / Support', img: 'dyg_luokong.png', bio: '灵动型游走，保护与开团兼备。', country: '中国', age: 21, hero: '张飞 / 朵莉亚 / 鲁班大师'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="dyg_logo.png" alt="DYG" class="team-logo mb-2"/>
                 <p class="team-name-en">DYG</p>
                 <p class="team-name-cn">深圳DYG</p>
@@ -374,6 +476,8 @@
                 {ign: '风箫', name: '于翔辉', role: 'Farm / ADC', img: 'edgm_fengxiao.png', bio: '年轻核心射手，输出转化率高。', country: '中国', age: 20, hero: '公孙离 / 狄仁杰 / 戈娅'},
                 {ign: '小随', name: '李文浩', role: 'Roam / Support', img: 'edgm_xiaosui.png', bio: '擅长保护与开团的游走选手。', country: '中国', age: 20, hero: '牛魔 / 太乙真人 / 孙膑'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="edgm_logo.png" alt="EDGM" class="team-logo mb-2"/>
                 <p class="team-name-en">EDG.M</p>
                 <p class="team-name-cn">上海EDG.M</p>
@@ -389,6 +493,8 @@
                 {ign: '小楼', name: '沈宇轩', role: 'Jungle', img: 'estar_xiaolou.png', bio: '野区打野选手，节奏带动者。', country: '中国', age: 21, hero: '镜 / 澜 / 宫本武藏'},
                 {ign: 'Ming', name: '池晓铭', role: 'Mid', img: 'estar_ming.png', bio: '中路输出核心，支援及时。', country: '中国', age: 23, hero: '王昭君 / 弈星 / 沈梦溪'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="estar_logo.png" alt="eStar" class="team-logo mb-2"/>
                 <p class="team-name-en">eStar</p>
                 <p class="team-name-cn">武汉eStarPro</p>
@@ -404,6 +510,8 @@
                 {ign: '小屿', name: '王思琪', role: 'Farm / ADC', img: 'ksg_xiaoyu.png', bio: '射手选手，团战输出拉满。', country: '中国', age: 19, hero: '狄仁杰 / 戈娅 / 公孙离'},
                 {ign: '晚星', name: '王恒鸿', role: 'Roam / Support', img: 'ksg_wanxing.png', bio: '开团与保护兼备的游走。', country: '中国', age: 24, hero: '苏烈 / 朵莉亚 / 孙膑'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ksg_logo.png" alt="KSG" class="team-logo mb-2"/>
                 <p class="team-name-en">KSG</p>
                 <p class="team-name-cn">苏州KSG</p>
@@ -419,6 +527,8 @@
                 {ign: 'silver', name: '黄本帅', role: 'Farm / ADC', img: 'nantong_baiqing.png', bio: '稳定输出的射手选手。', country: '中国', age: 22, hero: '鲁班七号 / 孙尚香 / 伽罗'},
                 {ign: '白清', name: '吴轲蔚', role: 'Roam / Support', img: 'nantong_silver.png', bio: '灵动游走，视野控制全面。', country: '中国', age: 21, hero: '桑启 / 鲁班大师 / 张飞'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="hero_logo.png" alt="Hero" class="team-logo mb-2"/>
                 <p class="team-name-en">HERO</p>
                 <p class="team-name-cn">南通Hero久竞</p>
@@ -434,6 +544,8 @@
                 {ign: '昭珏', name: '屈万东', role: 'Farm / ADC', img: 'wb_zaojue.png', bio: '主力射手，团战收割能力突出。', country: '中国', age: 19, hero: '公孙离 / 孙尚香 / 狄仁杰'},
                 {ign: '一笙', name: '李自威', role: 'Roam / Support', img: 'wb_yisheng.png', bio: '开团游走，大局观出色。', country: '中国', age: 24, hero: '张飞 / 鲁班大师 / 太乙真人'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="wb_logo.png" alt="WB" class="team-logo mb-2"/>
                 <p class="team-name-en">WB</p>
                 <p class="team-name-cn">北京WB</p>
@@ -449,6 +561,8 @@
                 {ign: '道崽', name: '杨凯博', role: 'Farm / ADC', img: 'wolves_daizai.png', bio: '天才射手，操作细腻。', country: '中国', age: 20, hero: '鲁班七号 / 孙尚香 / 公孙离'},
                 {ign: '信', name: '苟宏鑫', role: 'Roam / Support', img: 'wolves_xin.png', bio: '多面手游走，开团意识极其敏锐。', country: '中国', age: 21, hero: '苏烈 / 朵莉亚 / 孙膑'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="wolves_logo.png" alt="Wolves" class="team-logo mb-2"/>
                 <p class="team-name-en">Wolves</p>
                 <p class="team-name-cn">重庆狼队</p>
@@ -464,6 +578,8 @@
                 {ign: '蓝桉', name: '李涿阳', role: 'Farm / ADC', img: 'tes_lanan.png', bio: '主力射手，团战输出稳定。', country: '中国', age: 21, hero: '公孙离 / 狄仁杰 / 孙尚香'},
                 {ign: '帆帆', name: '杨帆', role: 'Roam / Support', img: 'tes_fanfan.png', bio: '冠军游走指挥，视野布控极佳。', country: '中国', age: 24, hero: '鲁班大师 / 太乙真人 / 孙膑'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="tesa_logo.png" alt="TES.A" class="team-logo mb-2"/>
                 <p class="team-name-en">TES.A</p>
                 <p class="team-name-cn">长沙TES.A</p>
@@ -479,6 +595,8 @@
                 {ign: '小雪', name: '岳彩营', role: 'Farm / ADC', img: 'ttg_xiaoxue.png', bio: '输出型射手，走位拉满。', country: '中国', age: 20, hero: '狄仁杰 / 虞姬 / 孙尚香'},
                 {ign: '涵', name: '黄涵熙', role: 'Roam / Support', img: 'ttg_han.png', bio: '游走辅助，保护能力极强。', country: '中国', age: 21, hero: '张飞 / 桑启 / 鲁班大师'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ttg_logo.png" alt="TTG" class="team-logo mb-2"/>
                 <p class="team-name-en">TTG</p>
                 <p class="team-name-cn">广州TTG</p>
@@ -494,6 +612,8 @@
                 {ign: '小俞', name: '周宇', role: 'Farm / ADC', img: 'rw_xiaoyu.png', bio: '团队射手，收割能力优秀。', country: '中国', age: 20, hero: '公孙离 / 孙尚香 / 鲁班七号'},
                 {ign: '梦溪', name: '李文宝', role: 'Roam / Support', img: 'rw_mengxi.png', bio: '游走辅助，大局观清晰。', country: '中国', age: 21, hero: '苏烈 / 朵莉亚 / 太乙真人'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="rw_logo.png" alt="RW" class="team-logo mb-2"/>
                 <p class="team-name-en">RW侠</p>
                 <p class="team-name-cn">济南RW侠</p>
@@ -509,6 +629,8 @@
                 {ign: '绝意', name: '廖友侠', role: 'Farm / ADC', img: 'we_jueyi.png', bio: '主力射手，团战走位优秀。', country: '中国', age: 22, hero: '公孙离 / 狄仁杰 / 孙尚香'},
                 {ign: '九幽', name: '李俊超', role: 'Roam / Support', img: 'we_jiuyou.png', bio: '游走选手，保护与开团兼备。', country: '中国', age: 21, hero: '张飞 / 鲁班大师 / 盾山'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="we_logo.png" alt="WE" class="team-logo mb-2"/>
                 <p class="team-name-en">WE</p>
                 <p class="team-name-cn">西安WE</p>
@@ -524,6 +646,8 @@
                 {ign: '小寒', name: '金书瀚', role: 'Farm / ADC', img: 'jdg_xiaohan.png', bio: '核心射手，团战输出稳定。', country: '中国', age: 20, hero: '公孙离 / 狄仁杰 / 孙尚香'},
                 {ign: '无畏', name: '杨涛', role: 'Roam / Support', img: 'jdg_wuwei.png', bio: '全能高人气选手，转型指挥游走。', country: '中国', age: 24, hero: '大乔 / 张飞 / 太乙真人'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="jdg_logo.png" alt="JDG" class="team-logo mb-2"/>
                 <p class="team-name-en">JDG</p>
                 <p class="team-name-cn">北京JDG</p>
@@ -539,6 +663,8 @@
                 {ign: '小久', name: '阳文明', role: 'Farm / ADC', img: 'lgd_xiaojiu.png', bio: '主力输出射手，收割能力极强。', country: '中国', age: 21, hero: '狄仁杰 / 孙尚香 / 鲁班七号'},
                 {ign: '小崽', name: '夏肇汛', role: 'Roam / Support', img: 'lgd_xiaozai.png', bio: '保护与开团兼备的游走。', country: '中国', age: 20, hero: '苏烈 / 盾山 / 孙膑'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="lgd_logo.png" alt="LGD" class="team-logo mb-2"/>
                 <p class="team-name-en">LGD.NBW</p>
                 <p class="team-name-cn">杭州LGD.NBW</p>
@@ -554,6 +680,8 @@
                 {ign: '润润', name: '蒋润', role: 'Farm / ADC', img: 'rng_runrun.png', bio: '主力射手，团战走位极佳。', country: '中国', age: 20, hero: '公孙离 / 狄仁杰 / 孙尚香'},
                 {ign: '涛', name: '应泽涛', role: 'Roam / Support', img: 'rng_tao.png', bio: '保护型游走，团队屏障。', country: '中国', age: 21, hero: '张飞 / 太乙真人 / 桑启'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="rngm_logo.png" alt="RNG.M" class="team-logo mb-2"/>
                 <p class="team-name-en">RNG.M</p>
                 <p class="team-name-cn">上海RNG.M</p>
@@ -569,6 +697,8 @@
                 {ign: '小怜', name: '徐熠博', role: 'Farm / ADC', img: 'syg_xiaolian.png', bio: '团队射手，收割能力稳定。', country: '中国', age: 20, hero: '后羿 / 狄仁杰 / 孙尚香'},
                 {ign: '三岁', name: '张洋', role: 'Roam / Support', img: 'syg_sansui.png', bio: '灵动游走，开团意识佳。', country: '中国', age: 21, hero: '鲁班大师 / 苏烈 / 张飞'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="syg_logo.png" alt="SYG" class="team-logo mb-2"/>
                 <p class="team-name-en">SYG</p>
                 <p class="team-name-cn">SYG战队</p>
@@ -584,6 +714,8 @@
                 {ign: '萌元', name: '丁如风', role: 'Farm / ADC', img: 'wst_mengyuan.png', bio: '主力射手，站位严谨。', country: '中国', age: 21, hero: '狄仁杰 / 虞姬 / 孙尚香'},
                 {ign: '楠枫', name: '李亮', role: 'Roam / Support', img: 'wst_nanfeng.png', bio: '开团与保护兼备的游走。', country: '中国', age: 21, hero: '桑启 / 张飞 / 朵莉亚'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="wst_logo.png" alt="WST" class="team-logo mb-2"/>
                 <p class="team-name-en">WST</p>
                 <p class="team-name-cn">WST战队</p>
@@ -611,6 +743,8 @@
                 {ign: 'Vora', name: 'Vora', role: 'Initiator', img: '100t_vora.png', bio: '信息收集与战场支援核心。', country: 'USA', age: 21, hero: 'Sova / Fade'},
                 {ign: 'bang', name: 'Sean Bezerra', role: 'Controller', img: '100t_bang.png', bio: '顶级控场者，视野与烟雾控制极其出色。', country: 'USA', age: 22, hero: 'Astra / Viper'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="100t_logo.png" alt="100T" class="team-logo mb-2"/>
                 <p class="team-name-en">100T</p>
                 <p class="team-name-cn">100 Thieves</p>
@@ -626,6 +760,8 @@
                 {ign: 'mada', name: 'Adam Pampuch', role: 'Duelist / Flex', img: 'nrg_mada.png', bio: '激进突破选手，个人枪法硬朗。', country: 'USA', age: 22, hero: 'Raze / Phoenix'},
                 {ign: 'skuba', name: 'Logan Jenkins', role: 'Controller', img: 'nrg_skuba.png', bio: '战术控场手，残局发挥稳定。', country: 'USA', age: 22, hero: 'Astra / Omen'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="nrg_logo.png" alt="NRG" class="team-logo mb-2"/>
                 <p class="team-name-en">NRG</p>
                 <p class="team-name-cn">NRG Esports</p>
@@ -641,6 +777,8 @@
                 {ign: 'flameZ', name: 'Shahar Shushan', role: 'Duelist', img: 'vitality_flamez.webp', bio: '极致枪法突破手，团队前锋。', country: 'Israel', age: 23, hero: 'Jett / Raze'},
                 {ign: 'mezii', name: 'William Merriman', role: 'Controller', img: 'vitality_mezii.webp', bio: '全能型战术控场者，补位能力极强。', country: 'UK', age: 27, hero: 'Astra / Viper'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="vitality_logo.webp" alt="Vitality" class="team-logo mb-2"/>
                 <p class="team-name-en">VIT</p>
                 <p class="team-name-cn">Team Vitality</p>
@@ -656,6 +794,8 @@
                 {ign: 'Wo0t', name: 'Mert Alkan', role: 'Controller', img: 'th_wo0t.png', bio: '土耳其极限控场者。', country: 'Turkey', age: 20, hero: 'Astra / Omen'},
                 {ign: 'koshmaras', name: 'Koshmaras', role: 'Duelist', img: 'th_koshmaras.webp', bio: '新兴突破死神。', country: 'Lithuania', age: 20, hero: 'Jett / Raze'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="th_logo.png" alt="TH" class="team-logo mb-2"/>
                 <p class="team-name-en">TH</p>
                 <p class="team-name-cn">Team Heretics</p>
@@ -671,6 +811,8 @@
                 {ign: 'tex', name: 'Ian Botsch', role: 'Sentinel', img: 'mibr_tex.png', bio: '稳健阵地哨兵，防守端坚不可摧。', country: 'USA', age: 24, hero: 'Killjoy / Cypher'},
                 {ign: 'Verno', name: 'Alexander Franco', role: 'Initiator / IGL', img: 'mibr_verno.png', bio: '年轻的战术先锋指挥。', country: 'USA', age: 19, hero: 'Sova / Fade'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="mibr_logo.jpg" alt="MIBR" class="team-logo mb-2"/>
                 <p class="team-name-en">MIBR</p>
                 <p class="team-name-cn">MIBR</p>
@@ -686,6 +828,8 @@
                 {ign: 'Woohyun', name: 'Woohyun', role: 'Initiator', img: 'ns_woohyun.jpg', bio: '韩国战场先锋，擅长收集战场关键信息。', country: 'South Korea', age: 21, hero: 'Sova / Fade'},
                 {ign: 'Francis', name: 'Francis', role: 'Sentinel', img: 'ns_francis.png', bio: '韩国阵地哨兵，防守大闸。', country: 'South Korea', age: 22, hero: 'Killjoy / Cypher'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ns_logo.png" alt="NS" class="team-logo mb-2"/>
                 <p class="team-name-en">NS</p>
                 <p class="team-name-cn">Nongshim RedForce</p>
@@ -701,6 +845,8 @@
                 {ign: 'Crewen', name: 'Ali Eren Sargin', role: 'Sentinel', img: 'bbl_crewen.png', bio: '土耳其稳健哨兵。', country: 'Turkey', age: 22, hero: 'Killjoy / Cypher'},
                 {ign: 'Loita', name: 'Utku Kart', role: 'Controller', img: 'bbl_loita.png', bio: '土耳其战术控场大师。', country: 'Turkey', age: 22, hero: 'Astra / Omen'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="bbl_logo.png" alt="BBL" class="team-logo mb-2"/>
                 <p class="team-name-en">BBL</p>
                 <p class="team-name-cn">BBL Esports</p>
@@ -716,6 +862,8 @@
                 {ign: 'proxh', name: 'Proxh', role: 'Initiator', img: 'mates_proxh.png', bio: '新晋先锋，战场信息提供者。', country: 'France', age: 21, hero: 'Sova / Fade'},
                 {ign: 'marteen', name: 'Martin Pátek', role: 'Sentinel', img: 'mates_marteen.png', bio: '捷克防守哨兵。', country: 'Czech', age: 21, hero: 'Killjoy / Chamber'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="mates_logo.jpg" alt="Mates" class="team-logo mb-2"/>
                 <p class="team-name-en">Mates</p>
                 <p class="team-name-cn">Gentle Mates</p>
@@ -731,6 +879,8 @@
                 {ign: 'nobody', name: '王森旭', role: 'Flex / IGL', img: 'edg_nobody.png', bio: '全能战术指挥，团队润滑剂。', country: 'China', age: 22, hero: 'Breach / Skye'},
                 {ign: 'Jieni7', name: '李佳乐', role: 'Initiator', img: 'edg_jieni7.png', bio: '顶级先锋，信息收集核心。', country: 'China', age: 21, hero: 'Sova / Fade'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="edg_logo.png" alt="EDG" class="team-logo mb-2"/>
                 <p class="team-name-en">EDG</p>
                 <p class="team-name-cn">EDward Gaming</p>
@@ -746,6 +896,8 @@
                 {ign: 'something', name: 'Ilya Petrov', role: 'Duelist', img: 'prx_something.png', bio: '俄罗斯极致反应狂魔决斗者。', country: 'Russia', age: 23, hero: 'Jett / Raze'},
                 {ign: 'Jinggg', name: 'Wang Jing Jie', role: 'Initiator / Duelist', img: 'prx_jinggg.png', bio: '新加坡炸弹人绝活哥。', country: 'Singapore', age: 22, hero: 'Raze / Phoenix'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="prx_logo.webp" alt="PRX" class="team-logo mb-2"/>
                 <p class="team-name-en">PRX</p>
                 <p class="team-name-cn">Paper Rex</p>
@@ -761,6 +913,8 @@
                 {ign: 'Monyet', name: 'Cahya Nugraha', role: 'Controller', img: 'rrq_monyet.png', bio: '印尼顶级烟雾控场手。', country: 'Indonesia', age: 20, hero: 'Astra / Viper'},
                 {ign: 'xan', name: 'Xan Ng', role: 'Duelist / Flex', img: 'rrq_xan.png', bio: '马来西亚超新星选手。', country: 'Malaysia', age: 19, hero: 'Jett / Omen'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="rrq_logo.png" alt="RRQ" class="team-logo mb-2"/>
                 <p class="team-name-en">RRQ</p>
                 <p class="team-name-cn">Rex Regum Qeon</p>
@@ -776,6 +930,8 @@
                 {ign: 'LewN', name: 'Burak Alkan', role: 'Initiator', img: 'kc_lewn.png', bio: '土耳其先锋。', country: 'Turkey', age: 20, hero: 'Sova / Fade'},
                 {ign: 'avez', name: 'Hazem Khaled', role: 'Sentinel', img: 'kc_avez.png', bio: '埃及防守战术家。', country: 'Egypt', age: 21, hero: 'Killjoy / Cypher'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="kc_logo.jpg" alt="KC" class="team-logo mb-2"/>
                 <p class="team-name-en">KC</p>
                 <p class="team-name-cn">Karmine Corp</p>
@@ -791,6 +947,8 @@
                 {ign: 'iamgrq', name: '顾仁强', role: 'Flex', img: 'ag_iamgrq.jpg', bio: '中国全能选人与协同辅助。', country: 'China', age: 22, hero: 'KAY/O / Gekko'},
                 {ign: 'f4ngeer', name: '房宇杰', role: 'Sentinel', img: 'ag_f4ngeer.jpg', bio: '中国防守哨兵。', country: 'China', age: 21, hero: 'Killjoy / Cypher'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ag_logo.png" alt="AG.AL" class="team-logo mb-2"/>
                 <p class="team-name-en">AG.AL</p>
                 <p class="team-name-cn">All Gamers</p>
@@ -806,6 +964,8 @@
                 {ign: 'jawgemo', name: 'Alexander Mor', role: 'Duelist / Controller', img: 'g2_jawgemo.png', bio: '冠军突破手，烟攻兼备。', country: 'USA', age: 25, hero: 'Raze / Omen'},
                 {ign: 'trent', name: 'Trent Cairns', role: 'Initiator', img: 'g2_trent.png', bio: '北美搜集信息天花板。', country: 'USA', age: 21, hero: 'Sova / Fade'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="g2_logo.png" alt="G2" class="team-logo mb-2"/>
                 <p class="team-name-en">G2</p>
                 <p class="team-name-cn">G2 Esports</p>
@@ -821,6 +981,8 @@
                 {ign: 'sharks', name: 'sharks', role: 'Sentinel', img: 'xlg_sharks.jpg', bio: '稳健防守后盾。', country: 'China', age: 22, hero: 'Killjoy / Cypher'},
                 {ign: 'happywei', name: 'happywei', role: 'Duelist', img: 'xlg_happywei.png', bio: '激进突破核心。', country: 'China', age: 20, hero: 'Jett / Raze'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="xlg_logo.png" alt="XLG" class="team-logo mb-2"/>
                 <p class="team-name-en">XLG</p>
                 <p class="team-name-cn">Xi Lai Gaming</p>
@@ -836,6 +998,8 @@
                 {ign: 'PatMen', name: 'Patrick Mendoza', role: 'Sentinel', img: 'ge_patmen.png', bio: '菲律宾阵地哨兵。', country: 'Philippines', age: 21, hero: 'Killjoy / Cypher'},
                 {ign: 'Kr1stal', name: 'Savva Fedorov', role: 'Initiator / Flex', img: 'ge_kr1stal.png', bio: '顶级先锋战术大脑。', country: 'Russia', age: 22, hero: 'Sova / Fade'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ge_logo.png" alt="GE" class="team-logo mb-2" />
                 <p class="team-name-en">GE</p>
                 <p class="team-name-cn">Global Esports</p>
@@ -863,6 +1027,8 @@
                 {ign: 'donk', name: 'Danil Kryshkovets', role: 'Rifler / Entry', img: 'spirit_donk.webp', bio: '现象级天才突破手，枪法爆发力极强。', country: 'Russia', age: 19, hero: 'AK-47 / Galil AR'},
                 {ign: 'zont1x', name: 'Myroslav Plakhotja', role: 'Rifler', img: 'spirit_zont1x.webp', bio: '稳健架枪者，残局胜率高。', country: 'Ukraine', age: 21, hero: 'AK-47 / M4A1-S'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="spirit_logo.png" alt="Spirit" class="team-logo mb-2" />
                 <p class="team-name-en">Spirit</p>
                 <p class="team-name-cn">Team Spirit</p>
@@ -878,6 +1044,8 @@
                 {ign: 'KSCERATO', name: 'Kaike Cerato', role: 'Rifler', img: 'furia_kscerato.webp', bio: '顶级枪王，极高的单兵能力。', country: 'Brazil', age: 26, hero: 'AK-47 / M4A1-S'},
                 {ign: 'molodoy', name: 'Danil Golobenkov', role: 'Rifler / Flex', img: 'furia_molodoy.webp', bio: '年轻的新生代火力补充。', country: 'Russia', age: 20, hero: 'AK-47 / Galil AR'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="furia_logo.png" alt="FURIA" class="team-logo mb-2" />
                 <p class="team-name-en">FURIA</p>
                 <p class="team-name-cn">FURIA Esports</p>
@@ -893,6 +1061,8 @@
                 {ign: 'w0nderful', name: 'Ihor Zhdanov', role: 'Sniper', img: 'navi_w0nderful.webp', bio: '年轻的顶尖主狙击手。', country: 'Ukraine', age: 21, hero: 'AWP / CZ75-Auto'},
                 {ign: 'makazze', name: 'Juho Ruponen', role: 'Rifler', img: 'navi_makazze.webp', bio: '芬兰新星选手，操作硬朗。', country: 'Finland', age: 19, hero: 'AK-47 / M4A1-S'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="navi_logo.png" alt="NaVi"  class="team-logo mb-2"/>
                 <p class="team-name-en">NaVi</p>
                 <p class="team-name-cn">Natus Vincere</p>
@@ -908,6 +1078,8 @@
                 {ign: 'jcobbb', name: 'Jacob Pietrzak', role: 'Rifler / Entry', img: 'faze_jcobbb.webp', bio: '年轻破点主力。', country: 'USA', age: 20, hero: 'AK-47 / MP9'},
                 {ign: 'JBOEN', name: 'Jason Boe Nielsen', role: 'Sniper / Flex', img: 'faze_jboen.webp', bio: '丹麦新锐狙击与辅助。', country: 'Denmark', age: 20, hero: 'AWP / M4A4'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="faze_logo.png" alt="FaZe" class="team-logo mb-2" />
                 <p class="team-name-en">FaZe</p>
                 <p class="team-name-cn">FaZe Clan</p>
@@ -923,6 +1095,8 @@
                 {ign: 'kyxsan', name: 'Damjan Stoilkovski', role: 'IGL', img: 'aurora_kyxsan.webp', bio: '战术指挥，调度果断。', country: 'North Macedonia', age: 25, hero: 'AK-47 / Utility'},
                 {ign: 'Wicadia', name: 'Ali Haydar Yalçın', role: 'Entry', img: 'aurora_wicadia.webp', bio: '土耳其强力突破手。', country: 'Turkey', age: 20, hero: 'AK-47 / Galil AR'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="aurora_logo.png" alt="Aurora" class="team-logo mb-2"/>
                 <p class="team-name-en">Aurora</p>
                 <p class="team-name-cn">Aurora Gaming</p>
@@ -938,6 +1112,8 @@
                 {ign: 'm0NESY', name: 'Ilya Osipov', role: 'Sniper', img: 'falcons_m0nesy.webp', bio: '天才操作型顶级主狙手。', country: 'Russia', age: 21, hero: 'AWP / P250'},
                 {ign: 'kyousuke', name: 'Maksim Lukin', role: 'Rifler', img: 'falcons_kyousuke.webp', bio: '年轻的新生代火力点。', country: 'Russia', age: 19, hero: 'AK-47 / Galil AR'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="falcons_logo.png" alt="Falcons" class="team-logo mb-2"/>
                 <p class="team-name-en">Falcons</p>
                 <p class="team-name-cn">Team Falcons</p>
@@ -953,6 +1129,8 @@
                 {ign: 'PR', name: 'Kacper Gabara', role: 'Rifler', img: 'mouz_pr.webp', bio: '波兰年轻补位手。', country: 'Poland', age: 20, hero: 'AK-47 / M4A4'},
                 {ign: 'xelex', name: 'Adrian Vincze', role: 'Rifler / Flex', img: 'mouz_xelex.webp', bio: '新晋战术支援选手。', country: 'Hungary', age: 19, hero: 'AK-47 / Galil AR'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="mouz_logo.png" alt="MOUZ" class="team-logo mb-2"/>
                 <p class="team-name-en">MOUZ</p>
                 <p class="team-name-cn">MOUZ</p>
@@ -968,6 +1146,8 @@
                 {ign: 'flameZ', name: 'Shahar Shushan', role: 'Entry', img: 'vitality_flamez.webp', bio: '激进枪法突破手。', country: 'Israel', age: 23, hero: 'AK-47 / MAC-10'},
                 {ign: 'mezii', name: 'William Merriman', role: 'Rifler', img: 'vitality_mezii.webp', bio: '全能战术辅助，补位极强。', country: 'UK', age: 27, hero: 'AK-47 / M4A4'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="vitality_logo.webp" alt="Vitality" class="team-logo mb-2"/>
                 <p class="team-name-en">VIT</p>
                 <p class="team-name-cn">Team Vitality</p>
@@ -983,6 +1163,8 @@
                 {ign: 'HeavyGod', name: 'Nikita Martynenko', role: 'Rifler', img: 'g2_heavygod.webp', bio: '以色列前锋突破力量。', country: 'Israel', age: 23, hero: 'AK-47 / Galil AR'},
                 {ign: 'MATYS', name: 'Matúš Šimko', role: 'Rifler / Flex', img: 'g2_matys.webp', bio: '斯洛伐克战术核心。', country: 'Slovakia', age: 23, hero: 'AK-47 / M4A4'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="g2_logo.png" alt="G2" class="team-logo mb-2"/>
                 <p class="team-name-en">G2</p>
                 <p class="team-name-cn">G2 Esports</p>
@@ -998,6 +1180,8 @@
                 {ign: 'cmtry', name: 'Cem Tiryaki', role: 'Entry', img: 'fut_cmtry.webp', bio: '突破进攻前锋。', country: 'Turkey', age: 21, hero: 'AK-47 / MAC-10'},
                 {ign: 'Dziugss', name: 'Džiugas Steponavičius', role: 'Rifler / Flex', img: 'fut_dziugss.webp', bio: '立陶宛全能战术选手。', country: 'Lithuania', age: 20, hero: 'AK-47 / Galil AR'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="fut_logo.png" alt="FUT" class="team-logo mb-2"/>
                 <p class="team-name-en">FUT</p>
                 <p class="team-name-cn">FUT Esports</p>
@@ -1025,6 +1209,8 @@
                 {ign: 'Mira', name: 'Miroslaw Kolpakov', role: 'Pos 4 (Support)', img: 'aurora_mira.png', bio: '双冠游走位，团战开团大师。', country: 'Ukraine', age: 26, hero: 'Rubick / Lion'},
                 {ign: 'kaori', name: 'Oleg Medvedok', role: 'Pos 5 (Support)', img: 'aurora_kaori.png', bio: '稳健阵地辅助。', country: 'Ukraine', age: 24, hero: 'Chen / Disruptor'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="aurora_logo.png" alt="Aurora" class="team-logo mb-2"/>
                 <p class="team-name-en">AUR</p>
                 <p class="team-name-cn">Aurora Gaming</p>
@@ -1040,6 +1226,8 @@
                 {ign: 'Save-', name: 'Vitaliy Melnik', role: 'Pos 4 / IGL', img: 'bb_save.webp', bio: '战术大脑，游走掌控全局。', country: 'Moldova', age: 24, hero: 'Shadow Demon / Io'},
                 {ign: 'Kataomi', name: 'Vladislav Semenov', role: 'Pos 5 (Support)', img: 'bb_kataomi.webp', bio: '保护型五号位。', country: 'Russia', age: 25, hero: 'Pugna / Enchantress'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="bb_logo.webp" alt="BB" class="team-logo mb-2"/>
                 <p class="team-name-en">BB</p>
                 <p class="team-name-cn">BoomBoys</p>
@@ -1055,6 +1243,8 @@
                 {ign: 'Ari', name: 'Matthew Walker', role: 'Pos 4 (Support)', img: '1w_ari.webp', bio: '英国天才游走四号位。', country: 'UK', age: 23, hero: 'Hoodwink / Techies'},
                 {ign: 'Whitemon', name: 'Matthew Filemon', role: 'Pos 5 (Support)', img: '1w_whitemon.webp', bio: '印尼资深稳健辅助。', country: 'Indonesia', age: 25, hero: 'Mirana / Treant Protector'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="1w_logo.webp" alt="1W" class="team-logo mb-2"/>
                 <p class="team-name-en">1W</p>
                 <p class="team-name-cn">Iron Wing</p>
@@ -1070,6 +1260,8 @@
                 {ign: 'Cr1t-', name: 'Andreas Nielsen', role: 'Pos 4 (Support)', img: 'falcons_cr1t.webp', bio: '老牌顶级四号位，游走发动机。', country: 'Denmark', age: 30, hero: 'Earth Spirit / Willow'},
                 {ign: 'Sneyking', name: 'Jingjun Wu', role: 'Pos 5 / IGL', img: 'falcons_sneyking.webp', bio: '冠军队长兼战术大脑。', country: 'USA', age: 31, hero: 'Mirana / Tusk'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="falcons_logo.png" alt="Falcons" class="team-logo mb-2"/>
                 <p class="team-name-en">FLC</p>
                 <p class="team-name-cn">Team Falcons</p>
@@ -1085,6 +1277,8 @@
                 {ign: 'Boxi', name: 'Samuel Svahn', role: 'Pos 4 (Support)', img: 'liquid_boxi.webp', bio: '凶狠游走四号位，前中线开团。', country: 'Sweden', age: 28, hero: 'Clockwerk / Tusk'},
                 {ign: 'tOfu', name: 'Erik Engel', role: 'Pos 5 (Support)', img: 'liquid_tofu.webp', bio: '德国顶级辅助，控场精准。', country: 'Germany', age: 29, hero: 'Rubick / Techies'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="liquid_logo.webp" alt="Liquid" class="team-logo mb-2"/>
                 <p class="team-name-en">TL</p>
                 <p class="team-name-cn">Team Liquid</p>
@@ -1100,6 +1294,8 @@
                 {ign: 'Saksa', name: 'Martin Sazdov', role: 'Pos 4 (Support)', img: 'yandex_saksa.webp', bio: 'TI冠军四号位，高塔一般的防线。', country: 'North Macedonia', age: 31, hero: 'Tiny / Keeper of the Light'},
                 {ign: 'Malady', name: 'Arman Orazbayev', role: 'Pos 5 (Support)', img: 'yandex_malady.webp', bio: '哈萨克斯坦保核专精辅助。', country: 'Kazakhstan', age: 23, hero: 'Garbage / Grimstroke'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="yandex_logo.webp" alt="Yandex" class="team-logo mb-2"/>
                 <p class="team-name-en">YND</p>
                 <p class="team-name-cn">Yandex Team</p>
@@ -1115,6 +1311,8 @@
                 {ign: 'fy', name: '徐林森', role: 'Pos 4 (Support)', img: 'xg_fy.webp', bio: 'Dota2教父级四号位，fy god。', country: 'China', age: 31, hero: 'Rubick / Phoenix'},
                 {ign: 'xNova', name: '叶建暐', role: 'Pos 5 (Support)', img: 'xg_xnova.webp', bio: '马来西亚稳健五号位大脑。', country: 'Malaysia', age: 28, hero: 'Disruptor / Elder Titan'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="xg_logo.jpg" alt="XG" class="team-logo mb-2"/>
                 <p class="team-name-en">XG</p>
                 <p class="team-name-cn">Xtreme Gaming</p>
@@ -1130,6 +1328,8 @@
                 {ign: 'not me', name: 'Not Me', role: 'Pos 4 (Support)', img: 'spirit_notme.webp', bio: '预选赛新晋突破四号位。', country: 'Russia', age: 21, hero: 'Earth Spirit / Mirana'},
                 {ign: 'rue', name: 'Alexander Filin', role: 'Pos 5 (Support)', img: 'spirit_rue.webp', bio: '辅助指挥后盾。', country: 'Russia', age: 21, hero: 'Shadow Demon / Chen'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="spirit_logo.png" alt="TS" class="team-logo mb-2"/>
                 <p class="team-name-en">TS</p>
                 <p class="team-name-cn">Team Spirit</p>
@@ -1145,6 +1345,8 @@
                 {ign: '9Class', name: 'Edgar Naltakyan', role: 'Pos 4 (Support)', img: 'vision_9class.webp', bio: '黑马游走四号位，骚扰能力强。', country: 'Russia', age: 21, hero: 'Monkey King / Hoodwink'},
                 {ign: 'Dukalis', name: 'Arman Gaziev', role: 'Pos 5 / IGL', img: 'vision_dukalis.webp', bio: '欧洲赛区防守大脑。', country: 'Russia', age: 24, hero: 'Jakiro / Disruptor'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="vision_logo.webp" alt="Vision" class="team-logo mb-2"/>
                 <p class="team-name-en">VIS</p>
                 <p class="team-name-cn">Team Vision</p>
@@ -1160,6 +1362,8 @@
                 {ign: 'OmaR', name: 'Omar Moughrabi', role: 'Pos 4 (Support)', img: 'nigma_omar.webp', bio: '中东优秀游走手。', country: 'Lebanon', age: 23, hero: 'Techies / Rubick'},
                 {ign: 'GH', name: 'Maroun Merhej', role: 'Pos 5 (Support)', img: 'nigma_gh.webp', bio: 'GH神，守卫雅典娜极佳口碑辅助。', country: 'Lebanon', age: 31, hero: 'Io / Keeper of the Light'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="nigma_logo.webp" alt="Nigma" class="team-logo mb-2"/>
                 <p class="team-name-en">NG</p>
                 <p class="team-name-cn">Nigma Galaxy</p>
@@ -1175,6 +1379,8 @@
                 {ign: 'sayuw', name: 'Oleg Kalenbet', role: 'Pos 4 (Support)', img: 'huligani_sayuw.png', bio: '老练游走辅助。', country: 'Russia', age: 25, hero: 'Nyx Assassin / Tusk'},
                 {ign: 'RESPECT', name: 'Respect', role: 'Pos 5 (Support)', img: 'huligani_respect.png', bio: '阵地保护五号位。', country: 'Russia', age: 22, hero: 'Bane / Crystal Maiden'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="huligani_logo.webp" alt="HLG" class="team-logo mb-2"/>
                 <p class="team-name-en">HLG</p>
                 <p class="team-name-cn">HULIGANI</p>
@@ -1190,6 +1396,8 @@
                 {ign: 'planet', name: '林浩', role: 'Pos 4 (Support)', img: 'resilience_planet.webp', bio: '前LGD神级游走四号位。', country: 'China', age: 25, hero: 'Mirana / Rubick'},
                 {ign: 'zzq', name: '张子强', role: 'Pos 5 (Support)', img: 'resilience_zzq.png', bio: '稳健阵地视野大脑。', country: 'China', age: 26, hero: 'Disruptor / Shadow Demon'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="resilience_logo.webp" alt="TRS" class="team-logo mb-2"/>
                 <p class="team-name-en">TRS</p>
                 <p class="team-name-cn">Team Resilience</p>
@@ -1205,6 +1413,8 @@
                 {ign: 'XinQ', name: '赵子星', role: 'Pos 4 (Support)', img: 'vg_xinq.webp', bio: '鬼才四号位，操作极具观赏性。', country: 'China', age: 28, hero: 'Techies / Mirana'},
                 {ign: 'y`', name: '张懿萍', role: 'Pos 5 / IGL', img: 'vg_y.webp', bio: 'TI冠军队长，BP指挥大脑。', country: 'China', age: 28, hero: 'Oracle / Treant Protector'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="vg_logo.webp" alt="VG" class="team-logo mb-2"/>
                 <p class="team-name-en">VG</p>
                 <p class="team-name-cn">Vici Gaming</p>
@@ -1220,6 +1430,8 @@
                 {ign: 'TIMS', name: 'Timothy Randrup', role: 'Pos 4 (Support)', img: 'og_tims.webp', bio: '老牌游走指挥核心。', country: 'Philippines', age: 28, hero: 'Earthshaker / Tusk'},
                 {ign: 'skem', name: 'Rolen Andrei Ong', role: 'Pos 5 (Support)', img: 'og_skem.webp', bio: '绝活哥双能指挥。', country: 'Philippines', age: 25, hero: 'Crystal Maiden / Chen'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="og_logo.webp" alt="OG" class="team-logo mb-2"/>
                 <p class="team-name-en">OG</p>
                 <p class="team-name-cn">OG Esports</p>
@@ -1235,6 +1447,8 @@
                 {ign: 'Bignum', name: 'Danilo Shekhovtsov', role: 'Pos 4 (Support)', img: 'gl_bignum.png', bio: '老练四号位开团手。', country: 'Ukraine', age: 29, hero: 'Rubick / Earth Spirit'},
                 {ign: 'Speeed', name: 'Speeed', role: 'Pos 5 (Support)', img: 'gl_speeed.png', bio: '北美知名战术指挥。', country: 'USA', age: 25, hero: 'Silencer / Ancient Apparition'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="gl_logo.webp" alt="GL" class="team-logo mb-2"/>
                 <p class="team-name-en">GL</p>
                 <p class="team-name-cn">GamerLegion</p>
@@ -1250,6 +1464,8 @@
                 {ign: 'Thiolicor', name: 'Thiago Cordeiro', role: 'Pos 4 (Support)', img: 'lgd_thiolicor.webp', bio: '巴西硬朗游走手。', country: 'Brazil', age: 26, hero: 'Earth Spirit / Tusk'},
                 {ign: 'KJ', name: 'Matheus Santos Jungles Diniz', role: 'Pos 5 / IGL', img: 'lgd_kj.webp', bio: '南美老牌指挥核心。', country: 'Brazil', age: 27, hero: 'Disruptor / Shadow Shaman'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="lgd_logo.png" alt="LGD" class="team-logo mb-2"/>
                 <p class="team-name-en">LGD</p>
                 <p class="team-name-cn">LGD Gaming</p>
@@ -1277,6 +1493,8 @@
                 {ign: 'Garcia', name: 'Garcia', role: 'Gold Lane', img: 'tr_garcia.webp', bio: '稳定发育火力输出。', country: 'Indonesia', age: 22, hero: 'Beatrix / Claude'},
                 {ign: 'Kimyy', name: 'Kimyy', role: 'Roamer', img: 'tr_kimyy.webp', bio: '视野与控制后盾。', country: 'Indonesia', age: 23, hero: 'Chou / Minotaur'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="tr_logo.jpg" alt="TR" class="team-logo mb-2"/>
                 <p class="team-name-en">TR</p>
                 <p class="team-name-cn">True Rippers</p>
@@ -1292,6 +1510,8 @@
                 {ign: 'Felix', name: 'Felix', role: 'Gold Lane', img: 'pro_felix.webp', bio: '精密输出射手。', country: 'Cambodia', age: 21, hero: 'Brody / Wanwan'},
                 {ign: 'Koyl', name: 'Kyle Shawn Reyes', role: 'Roamer', img: 'pro_koyl.webp', bio: '团战前排控制。', country: 'Philippines', age: 23, hero: 'Khufra / Atlas'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="pro_logo.webp" alt="PRO" class="team-logo mb-2"/>
                 <p class="team-name-en">PRO</p>
                 <p class="team-name-cn">PRO Esports</p>
@@ -1307,6 +1527,8 @@
                 {ign: 'Meii', name: 'Zhou Ri', role: 'Roamer', img: 'gz_meii.webp', bio: '开团游走指挥', country: 'China', age: 20, hero: 'Tigreal / Akai'},
                 {ign: 'Modi', name: 'Li Gaorong', role: 'EXP Lane', img: 'gz_modi.webp', bio: '前排对抗路切后', country: 'China', age: 23, hero: 'Hayabusa / Lancelot'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="gz_logo.webp" alt="GZ" class="team-logo mb-2"/>
                 <p class="team-name-en">GZ</p>
                 <p class="team-name-cn">Guangzhou Gaming</p>
@@ -1322,6 +1544,8 @@
                 {ign: 'Aizn', name: 'Enkhbat Munkhharaa', role: 'Gold Lane', img: 'gk_aizn.webp', bio: '核心发育射手。', country: 'Saudi Arabia', age: 21, hero: 'Melissa / Beatrix'},
                 {ign: 'Yaga', name: 'Yazan Alsawaris', role: 'Roamer', img: 'gk_yaga.jpg', bio: '开团防线后盾。', country: 'Egypt', age: 24, hero: 'Minotaur / Kaja'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="gk_logo.webp" alt="GK" class="team-logo mb-2"/>
                 <p class="team-name-en">GK</p>
                 <p class="team-name-cn">Geekay Esports</p>
@@ -1337,6 +1561,8 @@
                 {ign: 'Jaypee', name: 'Jaypee Dela Cruz', role: 'Roamer', img: 'liquid_jaypee.webp', bio: '老练战术指挥游罗。', country: 'Philippines', age: 26, hero: 'Chou / Minotaur'},
                 {ign: 'Teddyqt', name: 'Teddyqt', role: 'Gold Lane', img: 'liquid_teddyqt.webp', bio: '新锐强力射手。', country: 'Philippines', age: 21, hero: 'Claude / Karrie'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="liquid_logo.webp" alt="TL" class="team-logo mb-2"/>
                 <p class="team-name-en">TL</p>
                 <p class="team-name-cn">Team Liquid</p>
@@ -1352,6 +1578,8 @@
                 {ign: 'Sanji', name: 'Shine Lin Aung', role: 'Gold Lane', img: 'yg_sanji.webp', bio: '核心发育射手。', country: 'Myanmar', age: 21, hero: 'Beatrix / Irithel'},
                 {ign: 'Blink', name: 'Kyaw Thuya', role: 'Roamer', img: 'yg_blink.png', bio: '视野大脑游罗。', country: 'Myanmar', age: 23, hero: 'Diggie / Angela'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="yg_logo.webp" alt="YG" class="team-logo mb-2"/>
                 <p class="team-name-en">YG</p>
                 <p class="team-name-cn">Yangon Galacticos</p>
@@ -1367,6 +1595,8 @@
                 {ign: 'Kyle', name: 'Kyle Sayson', role: 'Jungler', img: 'falcons_kyle.webp', bio: '顶尖野王，操作细腻。', country: 'Philippines', age: 20, hero: 'Nolan / Joy'},
                 {ign: 'Flap', name: 'David Canon', role: 'EXP Lane', img: 'falcons_flap.webp', bio: '顶尖战神对抗路。', country: 'Philippines', age: 22, hero: 'Lapu-Lapu / Terizla'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="falcons_logo.png" alt="Falcons PH" class="team-logo mb-2"/>
                 <p class="team-name-en">FLC.PH</p>
                 <p class="team-name-cn">Team Falcons PH</p>
@@ -1382,6 +1612,8 @@
                 {ign: 'Rosa', name: 'Rosa', role: 'Gold Lane', img: 'aurora_rosa.webp', bio: '精密发育射手。', country: 'Turkey', age: 21, hero: 'Wanwan / Beatrix'},
                 {ign: 'Tienzy', name: 'Tienzy', role: 'Roamer', img: 'aurora_tienzy.webp', bio: '开团游走大脑。', country: 'Turkey', age: 23, hero: 'Kaja / Akai'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="aurora_logo.png" alt="Aurora" class="team-logo mb-2"/>
                 <p class="team-name-en">AUR</p>
                 <p class="team-name-cn">Aurora Gaming</p>
@@ -1397,6 +1629,8 @@
                 {ign: 'Kramm', name: 'Kramm', role: 'EXP Lane', img: 'srg_kramm.webp', bio: '霸道对抗路前排。', country: 'Malaysia', age: 22, hero: 'Terizla / Arlott'},
                 {ign: 'Stormie', name: 'Stormie', role: 'Mid Lane', img: 'srg_stormie.webp', bio: '全能高伤害战术中单。', country: 'Malaysia', age: 21, hero: 'Faramis / Novaria'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="srg_logo.webp" alt="SRG" class="team-logo mb-2"/>
                 <p class="team-name-en">SRG</p>
                 <p class="team-name-cn">Selangor Red Giants</p>
@@ -1412,6 +1646,8 @@
                 {ign: 'Zqeef', name: 'Muhammad Aqif Haiqal Bin Azman', role: 'Roamer', img: 'vamos_zqeef.webp', bio: '前排开团游罗。', country: 'Malaysia', age: 21, hero: 'Franco / Atlas'},
                 {ign: 'Clawkun', name: 'Adriansyah Lesmana', role: 'Mid Lane', img: 'vamos_clawkun.webp', bio: '老练战术法师。', country: 'Indonesia', age: 24, hero: 'Valentina / Yve'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="vamos_logo.webp" alt="VMS" class="team-logo mb-2"/>
                 <p class="team-name-en">VMS</p>
                 <p class="team-name-cn">Team Vamos</p>
@@ -1427,6 +1663,8 @@
                 {ign: 'Hiko', name: 'Hiko', role: 'Gold Lane', img: 'spirit_hiko.webp', bio: '稳定残局收割射手。', country: 'Russia', age: 21, hero: 'Beatrix / Claude'},
                 {ign: 'Zaur', name: 'Zaur', role: 'Jungler', img: 'spirit_zaur.webp', bio: '高侵略性野区猎手。', country: 'Russia', age: 22, hero: 'Baxia / Martis'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="spirit_logo.png" alt="TS" class="team-logo mb-2"/>
                 <p class="team-name-en">TS</p>
                 <p class="team-name-cn">Team Spirit</p>
@@ -1442,6 +1680,8 @@
                 {ign: 'Jayy', name: 'Jay Chng', role: 'Gold Lane', img: 'ignite_jayy.webp', bio: '精准输出核心射手。', country: 'Singapore', age: 20, hero: 'Irithel / Brody'},
                 {ign: 'Kelvin', name: 'Kelvin Chen', role: 'Roamer', img: 'ignite_kelvin.webp', bio: '前排防御游罗。', country: 'Philippines', age: 23, hero: 'Minotaur / Akai'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="ignite_logo.webp" alt="IGN" class="team-logo mb-2"/>
                 <p class="team-name-en">IGN</p>
                 <p class="team-name-cn">IGNITE Gaming</p>
@@ -1457,6 +1697,8 @@
                 {ign: 'Chell', name: 'Michelle Denise', role: 'Gold Lane', img: 'vitality_chell.png', bio: '爆发力极强射手。', country: 'Indonesia', age: 21, hero: 'Beatrix / Claude'},
                 {ign: 'Vival', name: 'Viorelle Chen', role: 'Jungler', img: 'vitality_vival.png', bio: '高节奏打野。', country: 'Indonesia', age: 20, hero: 'Lancelot / Ling'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="vitality_logo.webp" alt="Vitality" class="team-logo mb-2"/>
                 <p class="team-name-en">VIT</p>
                 <p class="team-name-cn">Team Vitality</p>
@@ -1472,6 +1714,8 @@
                 {ign: 'Kairi', name: 'Kairi Rayosdelsol', role: 'Jungler', img: 'onic_kairi.webp', bio: '世界第一野王，天花板级别灵性打野。', country: 'Philippines', age: 20, hero: 'Fanny / Hayabusa'},
                 {ign: 'Lutpiii', name: 'Lutfi Ardianto', role: 'EXP Lane', img: 'onic_lutpiii.webp', bio: '印尼新晋霸道对抗路。', country: 'Indonesia', age: 19, hero: 'Joy / Paquito'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="onic_logo.webp" alt="ONIC" class="team-logo mb-2"/>
                 <p class="team-name-en">ONIC</p>
                 <p class="team-name-cn">Fnatic ONIC</p>
@@ -1487,6 +1731,8 @@
                 {ign: 'Doom', name: 'Cesar Daniel Aldave Hernandez', role: 'Roamer', img: 'e7_doom.webp', bio: '开团保护前排。', country: 'Chile', age: 23, hero: 'Akai / Minotaur'},
                 {ign: 'Shin', name: 'Johan Andruy S. González', role: 'Mid Lane', img: 'e7_shin.webp', bio: '高伤害控制法师。', country: 'Chile', age: 22, hero: 'Lunox / Xavier'}
             ])">
+            <!-- 光环 -->
+    <div class="logo-ring"></div>
                 <img src="e7_logo.webp" alt="E7" class="team-logo mb-2"/>
                 <p class="team-name-en">E7</p>
                 <p class="team-name-cn">Entity7</p>
@@ -1496,67 +1742,118 @@
 </div>
     </section>
 
-    <!-- 页脚 Footer (包含 Facebook 等社交媒体链接) -->
-    <footer style="background-color: #070a1c; border-top: 2px solid #6c2bd9;" class="py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <h5 class="text-white"><i class="fas fa-gamepad me-2 text-gold"></i>E-Sports Club</h5>
-                    <p style="color:#a0a0c0;">Building champions, creating legends. Join our community and compete at the highest level.</p>
-                    <div class="social-links d-flex gap-3">
-                        <a href="https://www.facebook.com" target="_blank" style="color:#ffd700;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.twitter.com" target="_blank" style="color:#ffd700;"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com" target="_blank" style="color:#ffd700;"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com" target="_blank" style="color:#ffd700;"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.twitch.tv" target="_blank" style="color:#ffd700;"><i class="fab fa-twitch"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h5 class="text-white">Quick Links</h5>
-                    <div class="footer-links d-flex flex-column">
-                        <a href="index.html" style="color:#a0a0c0;text-decoration:none;">Home</a>
-                        <a href="about.html" style="color:#a0a0c0;text-decoration:none;">About</a>
-                        <a href="tournaments.html" style="color:#a0a0c0;text-decoration:none;">Tournaments</a>
-                        <a href="team.html" style="color:#a0a0c0;text-decoration:none;">Team</a>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h5 class="text-white">Resources</h5>
-                    <div class="footer-links d-flex flex-column">
-                        <a href="events.html" style="color:#a0a0c0;text-decoration:none;">Events</a>
-                        <a href="gallery.html" style="color:#a0a0c0;text-decoration:none;">Gallery</a>
-                        <a href="news.html" style="color:#a0a0c0;text-decoration:none;">News</a>
-                        <a href="contact.html" style="color:#a0a0c0;text-decoration:none;">Contact</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="text-white"><i class="fas fa-envelope me-2 text-gold"></i>Stay Updated</h5>
-                    <p style="color:#a0a0c0;">Subscribe to our newsletter for the latest updates.</p>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Your email" style="border-radius:50px 0 0 50px;">
-                        <button class="btn btn-gold" style="border-radius:0 50px 50px 0;" onclick="subscribeNewsletter()">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
+    <!-- ==========================================
+    登录/注册弹窗
+    ========================================== -->
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="close-btn" onclick="closeAuthModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="auth-logo">
+                <i class="fas fa-gamepad"></i>
+                <h2>E-Sports Club</h2>
+                <p>Sign in to access your dashboard</p>
             </div>
-            <div class="copyright text-center mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.1);">
-                <p class="mb-0" style="color:#8888aa;">&copy; 2026 E-Sports Club. All Rights Reserved. | Built with <i class="fas fa-heart" style="color:#ffd700;"></i></p>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login" onclick="switchAuthTab('login')">Sign In</button>
+                <button class="tab-btn" data-tab="register" onclick="switchAuthTab('register')">Create Account</button>
+            </div>
+
+            <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="loginEmail" placeholder="you@example.com" required />
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="loginPassword" placeholder="••••••••" required />
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" /> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </button>
+                <div class="switch-text">
+                    Don't have an account? <a onclick="switchAuthTab('register')">Sign up</a>
+                </div>
+            </form>
+
+            <form class="auth-form hidden" id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="regName" placeholder="John Doe" required />
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="regEmail" placeholder="you@example.com" required />
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regConfirm" placeholder="Confirm password" required />
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-user-plus me-2"></i>Create Account
+                </button>
+                <div class="switch-text">
+                    Already have an account? <a onclick="switchAuthTab('login')">Sign in</a>
+                </div>
+            </form>
+
+            <div class="divider">or continue with</div>
+
+            <div class="social-login">
+                <button class="google" onclick="socialLogin('Google')">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="discord" onclick="socialLogin('Discord')">
+                    <i class="fab fa-discord"></i> Discord
+                </button>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- ==================== 补全缺失的 Modal 弹窗组件 ==================== -->
-    <!-- 1. 战队阵容 Roster Modal -->
+    <!-- ==========================================
+    Roster Modal & Player Profile Modal (保留原版)
+    ========================================== -->
+    <!-- 战队阵容 Roster Modal -->
     <div class="modal fade" id="teamRosterModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content custom-card" style="background-color: #141430; border: 1px solid #8b5cf6;">
+            <div class="modal-content">
                 <div class="modal-header border-bottom border-secondary">
                     <div class="d-flex align-items-center gap-3">
                         <img id="modalTeamLogo" src="" style="width: 50px; height: 50px; object-fit: contain;" />
                         <div>
                             <h5 class="modal-title text-white mb-0" id="modalTeamName">Team Roster</h5>
-                            <small class="text-gold" id="modalDivision"></small>
+                            <small style="color:#ffd700;" id="modalDivision"></small>
                         </div>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1568,24 +1865,24 @@
         </div>
     </div>
 
-    <!-- 2. 队员个人 Profile Modal -->
+    <!-- 队员个人 Profile Modal -->
     <div class="modal fade" id="playerProfileModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content custom-card" style="background-color: #141430; border: 1px solid #ffd700;">
+            <div class="modal-content">
                 <div class="modal-header border-bottom border-secondary">
-                    <h5 class="modal-title text-gold"><i class="fas fa-id-card me-2"></i>Player Profile</h5>
+                    <h5 class="modal-title" style="color:#ffd700;"><i class="fas fa-id-card me-2"></i>Player Profile</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
                     <img id="profileImg" class="rounded-circle border border-warning mb-3" style="width: 100px; height: 100px; object-fit: cover;" />
                     <h3 class="text-white mb-1" id="profileIGN">IGN</h3>
-                    <p class="text-gold" id="profileName">Real Name</p>
+                    <p style="color:#ffd700;" id="profileName">Real Name</p>
                     <hr class="border-secondary" />
                     <div class="row text-start g-2">
-                        <div class="col-6"><strong>Role:</strong> <span id="profileRole" class="text-purple"></span></div>
+                        <div class="col-6"><strong>Role:</strong> <span style="color:#a78bfa;" id="profileRole"></span></div>
                         <div class="col-6"><strong>Country:</strong> <span id="profileCountry"></span></div>
                         <div class="col-6"><strong>Age:</strong> <span id="profileAge"></span></div>
-                        <div class="col-6"><strong>Signature:</strong> <span id="profileHero" class="text-gold"></span></div>
+                        <div class="col-6"><strong>Signature:</strong> <span style="color:#ffd700;" id="profileHero"></span></div>
                     </div>
                     <div class="mt-3 text-start">
                         <strong>Bio:</strong>
@@ -1593,23 +1890,288 @@
                     </div>
                 </div>
                 <div class="modal-footer border-top border-secondary">
-                    <button type="button" class="btn btn-outline-gold" onclick="backToRoster()"><i class="fas fa-arrow-left me-1"></i> Back to Roster</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="backToRoster()"><i class="fas fa-arrow-left me-1"></i> Back to Roster</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ==========================================
+    页脚 Footer
+    ========================================== -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-gamepad me-2"></i>E-Sports Club</h5>
+                    <p style="color: var(--text-secondary);">Building champions, creating legends. Join our community and compete at the highest level.</p>
+                    <div class="social-links d-flex gap-3">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.twitch.tv" target="_blank"><i class="fab fa-twitch"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="tournaments.html">Tournaments</a>
+                        <a href="team.html">Team</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5>Resources</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="events.html">Events</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="news.html">News</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-envelope me-2"></i>Stay Updated</h5>
+                    <p style="color: var(--text-secondary);">Subscribe to our newsletter for the latest updates.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email" />
+                        <button class="btn btn-primary" onclick="subscribeNewsletter()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>&copy; 2026 E-Sports Club. All Rights Reserved. | Built with <i class="fas fa-heart" style="color: var(--accent-pink);"></i></p>
+            </div>
+        </div>
+    </footer>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/effects.js"></script>
 
-    <!-- JS 核心逻辑 -->
+    <!-- ==========================================
+    登录/注册 + Team 功能
+    ========================================== -->
     <script>
+        // ==========================================
+        // 🔐 登录/注册功能
+        // ==========================================
+
+        function openAuthModal(tab) {
+            document.getElementById('authModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            if (tab === 'register') {
+                switchAuthTab('register');
+            } else {
+                switchAuthTab('login');
+            }
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAuthModal();
+        });
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach(btn => btn.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                document.querySelector('.tab-btn[data-tab="login"]').classList.add('active');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                document.querySelector('.tab-btn[data-tab="register"]').classList.add('active');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!email || !password) {
+                showToast('⚠️ Please fill in all fields.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('esports_users')) || [];
+            const foundUser = users.find(u => u.email === email && u.password === password);
+
+            if (foundUser) {
+                const session = { name: foundUser.name, email: foundUser.email, loggedIn: true };
+                localStorage.setItem('esports_session', JSON.stringify(session));
+                updateUserUI(session);
+                closeAuthModal();
+                showToast('✅ Welcome back, ' + foundUser.name + '!');
+                document.getElementById('loginForm').reset();
+            } else {
+                const userExists = users.some(u => u.email === email);
+                if (userExists) {
+                    showToast('❌ Incorrect password. Please try again.');
+                } else {
+                    showToast('❌ No account found with this email. Please register.');
+                }
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+
+            if (!name || !email || !password || !confirm) {
+                showToast('⚠️ Please fill in all fields.');
+                return;
+            }
+            if (password.length < 6) {
+                showToast('⚠️ Password must be at least 6 characters.');
+                return;
+            }
+            if (password !== confirm) {
+                showToast('⚠️ Passwords do not match.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('esports_users')) || [];
+            if (users.some(u => u.email === email)) {
+                showToast('❌ This email is already registered. Please login.');
+                return;
+            }
+
+            users.push({ name, email, password });
+            localStorage.setItem('esports_users', JSON.stringify(users));
+
+            const session = { name, email, loggedIn: true };
+            localStorage.setItem('esports_session', JSON.stringify(session));
+            updateUserUI(session);
+            closeAuthModal();
+            showToast('🎉 Welcome, ' + name + '! Your account has been created.');
+            document.getElementById('registerForm').reset();
+        }
+
+        function handleLogout(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to sign out?')) {
+                localStorage.removeItem('esports_session');
+                updateUserUI(null);
+                showToast('👋 You have been signed out.');
+            }
+        }
+
+        function socialLogin(provider) {
+            const session = {
+                name: provider + '_User',
+                email: provider.toLowerCase() + '@example.com',
+                loggedIn: true
+            };
+            localStorage.setItem('esports_session', JSON.stringify(session));
+            updateUserUI(session);
+            closeAuthModal();
+            showToast('✅ Signed in with ' + provider + '!');
+        }
+
+        function updateUserUI(session) {
+            const authButtons = document.getElementById('authButtons');
+            const userAvatar = document.getElementById('userAvatarTop');
+            const userInitial = document.getElementById('userInitialTop');
+
+            if (session && session.loggedIn) {
+                authButtons.style.display = 'none';
+                userAvatar.style.display = 'flex';
+                userInitial.textContent = session.name.charAt(0).toUpperCase();
+            } else {
+                authButtons.style.display = 'flex';
+                userAvatar.style.display = 'none';
+            }
+        }
+
+        function showToast(message) {
+            let container = document.querySelector('.toast-container-custom');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'toast-container-custom';
+                container.style.cssText = `
+                    position: fixed;
+                    bottom: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 999999;
+                    background: rgba(14, 22, 38, 0.95);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 14px;
+                    padding: 16px 28px;
+                    color: #fff;
+                    font-weight: 500;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(20px);
+                    pointer-events: none;
+                    font-family: 'Inter', sans-serif;
+                    max-width: 90%;
+                    text-align: center;
+                `;
+                document.body.appendChild(container);
+            }
+
+            container.textContent = message;
+            container.style.opacity = '1';
+            container.style.transform = 'translateX(-50%) translateY(0)';
+
+            clearTimeout(container._timeout);
+            container._timeout = setTimeout(() => {
+                container.style.opacity = '0';
+                container.style.transform = 'translateX(-50%) translateY(20px)';
+            }, 3500);
+        }
+
+        // ==========================================
+        // Team 功能 (保留原版)
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 侧边栏高亮当前页面
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link-side, .nav-link-mobile').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // 检查登录状态
+            const session = JSON.parse(localStorage.getItem('esports_session'));
+            if (session && session.loggedIn) {
+                updateUserUI(session);
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAuthModal();
+        });
+
+        // 以下是你原来的 Team 功能函数 (完全保留)
         var currentRosterModal = null;
         var currentProfileModal = null;
         var activePlayersCache = [];
 
-        // 1. 切换游戏 Division
         function filterDivision(gameKey, btnElement) {
             var buttons = document.querySelectorAll('.game-tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -1625,44 +2187,40 @@
             });
         }
 
-        // 2. 搜索框筛选逻辑（补充缺失函数）
         function filterTeamsAndRosters() {
-    var query = document.getElementById('teamSearchInput').value.toLowerCase().trim();
-    var divisionBlocks = document.querySelectorAll('.division-block');
+            var query = document.getElementById('teamSearchInput').value.toLowerCase().trim();
+            var divisionBlocks = document.querySelectorAll('.division-block');
 
-    divisionBlocks.forEach(block => {
-        var cards = block.querySelectorAll('.col');
-        var hasMatchInDivision = false;
+            divisionBlocks.forEach(block => {
+                var cards = block.querySelectorAll('.col');
+                var hasMatchInDivision = false;
 
-        cards.forEach(cardCol => {
-            var text = cardCol.innerText.toLowerCase();
-            
-            if (query === '' || text.includes(query)) {
-                cardCol.style.display = '';
-                hasMatchInDivision = true;
-            } else {
-                cardCol.style.display = 'none';
-            }
-        });
+                cards.forEach(cardCol => {
+                    var text = cardCol.innerText.toLowerCase();
+                    if (query === '' || text.includes(query)) {
+                        cardCol.style.display = '';
+                        hasMatchInDivision = true;
+                    } else {
+                        cardCol.style.display = 'none';
+                    }
+                });
 
-        if (hasMatchInDivision) {
-            block.style.display = 'block';
-        } else {
-            block.style.display = 'none';
+                if (hasMatchInDivision) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
         }
-    });
-}
 
-// 清空搜索时恢复原样
-function clearSearch() {
-    var input = document.getElementById('teamSearchInput');
-    if (input) {
-        input.value = '';
-    }
-    filterTeamsAndRosters();
-}
+        function clearSearch() {
+            var input = document.getElementById('teamSearchInput');
+            if (input) {
+                input.value = '';
+            }
+            filterTeamsAndRosters();
+        }
 
-        // 4. 打开战队队员 Modal
         function openTeamRoster(shortName, fullName, division, logoUrl, players) {
             activePlayersCache = players;
 
@@ -1679,11 +2237,11 @@ function clearSearch() {
                         <div class="d-flex align-items-center gap-3">
                             <img src="${p.img}" class="rounded-circle" style="width:45px;height:45px;object-fit:cover;" onerror="this.src='https://via.placeholder.com/45'" />
                             <div>
-                                <h6 class="mb-0 fw-bold text-white">${p.ign} <small class="text-gold">(${p.name})</small></h6>
-                                <span class="badge bg-purple" style="background:#8b5cf6;">${p.role}</span>
+                                <h6 class="mb-0 fw-bold text-white">${p.ign} <small style="color:#ffd700;">(${p.name})</small></h6>
+                                <span class="badge" style="background:#8b5cf6; color:#fff;">${p.role}</span>
                             </div>
                         </div>
-                        <button class="btn btn-outline-gold btn-sm fw-bold" onclick="viewPlayerProfile(${index})">
+                        <button class="btn btn-outline-primary btn-sm fw-bold" onclick="viewPlayerProfile(${index})">
                             <i class="fas fa-user-circle me-1"></i> Profile
                         </button>
                     </div>
@@ -1696,7 +2254,6 @@ function clearSearch() {
             currentRosterModal.show();
         }
 
-        // 5. 查看队员个人 Profile
         function viewPlayerProfile(playerIndex) {
             var p = activePlayersCache[playerIndex];
             if(!p) return;
@@ -1718,7 +2275,6 @@ function clearSearch() {
             currentProfileModal.show();
         }
 
-        // 6. 返回 Roster Modal
         function backToRoster() {
             if (currentProfileModal) {
                 currentProfileModal.hide();
@@ -1727,8 +2283,15 @@ function clearSearch() {
                 currentRosterModal.show();
             }
         }
-    
+
+        function subscribeNewsletter() {
+            const input = document.querySelector('.input-group input');
+            const email = input ? input.value.trim() : '';
+            if (!email) { showToast('⚠️ Please enter your email.'); return; }
+            if (!email.includes('@')) { showToast('⚠️ Please enter a valid email.'); return; }
+            showToast('✅ Subscribed successfully!');
+            input.value = '';
+        }
     </script>
-    
 </body>
 </html>
