@@ -1509,3 +1509,128 @@ footer .footer-links a:hover {
         font-size: 0.5rem;
     }
 }
+/* ==========================================
+   Team 页面 - Profile Modal 电竞风格
+   ========================================== */
+
+/* ---------- 头像光环 ---------- */
+.profile-avatar-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-avatar-ring {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: var(--gradient-aurora);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+    animation: ringSpin 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ringSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ---------- Profile 信息卡片项 ---------- */
+.profile-info-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
+}
+
+.profile-info-item:hover {
+    border-color: rgba(0, 240, 255, 0.2);
+    background: rgba(0, 240, 255, 0.04);
+}
+
+/* ---------- Profile Modal 内容区域 ---------- */
+#playerProfileModal .modal-content {
+    background: rgba(14, 22, 38, 0.95) !important;
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Roster Modal 内容区域 ---------- */
+#teamRosterModal .modal-content {
+    background: rgba(14, 22, 38, 0.95) !important;
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Modal 入场动画 ---------- */
+@keyframes modalIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ---------- Modal 滚动条 ---------- */
+#teamRosterModal .modal-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+#teamRosterModal .modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#teamRosterModal .modal-body::-webkit-scrollbar-thumb {
+    background: var(--accent-cyan);
+    border-radius: 10px;
+}
+
+/* ---------- Roster 队员列表项悬停 ---------- */
+#teamRosterModal .roster-player-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 10px 14px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+#teamRosterModal .roster-player-item:hover {
+    background: rgba(0, 240, 255, 0.06);
+    border-color: rgba(0, 240, 255, 0.15);
+    transform: translateX(4px);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 576px) {
+    .profile-avatar-wrapper img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .profile-info-item {
+        padding: 6px 10px;
+    }
+    .profile-info-item small {
+        font-size: 0.6rem !important;
+    }
+    .profile-info-item span {
+        font-size: 0.85rem !important;
+    }
+}
