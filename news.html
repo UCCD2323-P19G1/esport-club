@@ -922,9 +922,6 @@
             showToast('✅ Subscribed successfully!');
             input.value = '';
         }
-    // ==========================================
-// 📤 Share Link Function - News Modal
-// ==========================================
 
 // ==========================================
 // 📤 Share Link Function - News Modal
@@ -948,7 +945,32 @@ function shareNewsLink() {
         return;
     }
     
-    showShareDialog(title, url);
+    // 使用原生 Web Share API 或者复制链接
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareText).then(function() {
+            showToast('✅ Link copied to clipboard!');
+        }).catch(function() {
+            fallbackCopyLink(shareText);
+        });
+    } else {
+        fallbackCopyLink(shareText);
+    }
+}
+
+function fallbackCopyLink(text) {
+    var textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        showToast('✅ Link copied!');
+    } catch (e) {
+        showToast('⚠️ Please copy the link manually');
+    }
+    document.body.removeChild(textarea);
 }
 
 function showShareDialog(title, url) {
