@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Sports Club - Home</title>
+    <title>E-Sports Club · 极光竞技</title>
 
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- 主样式 -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
 
@@ -15,33 +26,25 @@
     顶部导航栏 (Top Navbar)
     ========================================== -->
     <header class="top-navbar">
-        <!-- 左侧 Logo -->
         <a href="index.html" class="brand">
             <i class="fas fa-gamepad"></i>
             E-Sports Club
         </a>
-
-        <!-- 右上角 Account 区域 -->
         <div class="account-section">
-    <!-- 未登录：显示单个 Account 按钮 -->
-    <div id="authButtons">
-        <button class="auth-btn account-btn" onclick="openAuthModal('login')">
-            <i class="fas fa-user-plus me-1"></i> Account
-        </button>
+            <div id="authButtons">
+                <button class="auth-btn account-btn" onclick="openAuthModal('login')">
+                    <i class="fas fa-user-plus me-1"></i> Account
+                </button>
+            </div>
+            <!-- 已登录：显示用户头像 -->
+<div id="userAvatarTop" class="user-avatar-top" style="display:none;">
+    <span id="userInitialTop" onclick="toggleDropdown(event)">U</span>
+    <div class="dropdown-menu-top" id="userDropdownMenu">
+        <a href="#" class="danger" onclick="handleLogout(event)">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+        </a>
     </div>
-    <!-- 已登录：显示用户头像 -->
-    <div id="userAvatarTop" class="user-avatar-top" style="display:none;">
-        <span id="userInitialTop">U</span>
-        <div class="dropdown-menu-top">
-            <a href="#"><i class="fas fa-user"></i> My Profile</a>
-            <a href="#"><i class="fas fa-trophy"></i> My Tournaments</a>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-            <hr>
-            <a href="#" class="danger" onclick="handleLogout(event)">
-                <i class="fas fa-sign-out-alt"></i> Sign Out
-            </a>
-        </div>
-    </div>
+</div>
         </div>
     </header>
 
@@ -55,7 +58,6 @@
             </a>
             <span class="brand-short">ESC</span>
         </div>
-
         <a href="index.html" class="nav-link-side active">
             <i class="fas fa-home"></i>
             <span class="link-label">Home</span>
@@ -91,24 +93,23 @@
     </nav>
 
     <!-- 移动端底部导航 -->
-<nav class="mobile-bottom-nav">
-    <a href="index.html" class="nav-link-mobile">
-        <i class="fas fa-home"></i><span>Home</span>
-    </a>
-    <a href="tournaments.html" class="nav-link-mobile">
-        <i class="fas fa-trophy"></i><span>Events</span>
-    </a>
-    <a href="team.html" class="nav-link-mobile">
-        <i class="fas fa-users"></i><span>Team</span>
-    </a>
-    <a href="news.html" class="nav-link-mobile">
-        <i class="fas fa-newspaper"></i><span>News</span>
-    </a>
-    <!-- 🔥 改成 Account，点击打开登录弹窗 -->
-    <a href="#" class="nav-link-mobile" onclick="openAuthModal('login'); return false;">
-        <i class="fas fa-user-circle"></i><span>Account</span>
-    </a>
-</nav>
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-link-mobile">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="tournaments.html" class="nav-link-mobile">
+            <i class="fas fa-trophy"></i><span>Tournaments</span>
+        </a>
+        <a href="team.html" class="nav-link-mobile">
+            <i class="fas fa-users"></i><span>Team</span>
+        </a>
+        <a href="news.html" class="nav-link-mobile">
+            <i class="fas fa-newspaper"></i><span>News</span>
+        </a>
+        <a href="#" class="nav-link-mobile" onclick="openAuthModal('login'); return false;">
+            <i class="fas fa-user-circle"></i><span>Account</span>
+        </a>
+    </nav>
 
     <!-- ==========================================
     Hero 区域
@@ -116,7 +117,7 @@
     <section class="hero-section">
         <div class="container text-center position-relative">
             <h1 class="display-4 fw-bold mb-3 typing-text">
-            Welcome to <span class="text-cyber">E-Sports Club</span>
+                Welcome to <span class="text-cyber">E-Sports Club</span>
             </h1>
             <p class="lead mb-4" style="color: var(--text-secondary);">
                 Where Champions Are Made &bull; Legends Are Born
@@ -131,6 +132,83 @@
             </div>
         </div>
     </section>
+
+    <<!-- ==========================================
+视频 + 音乐区域 (上下排列 · 节省空间)
+========================================== -->
+<section class="py-4">
+    <div class="container">
+        <div class="row g-4 align-items-stretch">
+            
+            <!-- 视频 - 居中大小，占 7 列 -->
+            <div class="col-lg-7">
+                <div class="card p-2 h-100">
+                    <div class="ratio ratio-16x9 rounded overflow-hidden">
+                        <video id="promoVideo" 
+                               controls 
+                               autoplay 
+                               muted 
+                               playsinline>
+                            <source src="270444_medium.mp4" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                    </div>
+                    <div class="p-2 text-center small" style="color: var(--text-muted);">
+                        <i class="fas fa-play-circle me-1"></i> SYG_Anime · 电竞集锦
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 音频 - 占 5 列，与视频等高 -->
+            <div class="col-lg-5">
+                <div class="card p-4 h-100 d-flex flex-column justify-content-center">
+                    <h5 class="text-cyan mb-2">
+                        <i class="fas fa-headphones me-2"></i>赛博战歌
+                    </h5>
+                    <p style="color: var(--text-secondary); font-size:0.85rem; margin-bottom:12px;">
+                        🎵 点击播放开启电竞战歌
+                    </p>
+                    
+                    <div class="audio-player">
+                        <audio id="bgAudio" loop>
+                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        </audio>
+                        
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <button id="playBtn" class="btn btn-primary btn-sm" onclick="toggleAudio()" style="padding:8px 14px;">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="flex-grow-1" style="min-width:80px;">
+                                <div class="progress" style="height:6px; cursor:pointer;" onclick="seekAudio(event)">
+                                    <div id="audioProgress" class="progress-bar" style="width:0%; background: var(--gradient-aurora);"></div>
+                                </div>
+                            </div>
+                            <span id="audioTime" style="color: var(--text-muted); font-size:0.75rem; min-width:55px;">0:00</span>
+                            <button class="btn btn-outline-primary btn-sm" onclick="toggleVolume()" title="静音" style="padding:6px 10px;">
+                                <i id="volumeIcon" class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="mt-2 d-flex justify-content-between align-items-center">
+                            <span style="color: var(--text-muted); font-size:0.65rem;">
+                                <i class="fas fa-info-circle me-1"></i> 循环播放
+                            </span>
+                            <span id="audioStatus" style="color: var(--text-muted); font-size:0.65rem;">⏸ 未播放</span>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <input type="range" id="volumeSlider" class="form-range" min="0" max="1" step="0.01" value="0.5" 
+                                   style="width:100%; accent-color: var(--accent-cyan); height:4px;"
+                                   oninput="setVolume(this.value)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
 
     <!-- ==========================================
     统计数据
@@ -212,19 +290,15 @@
             <button class="close-btn" onclick="closeAuthModal()">
                 <i class="fas fa-times"></i>
             </button>
-
             <div class="auth-logo">
                 <i class="fas fa-gamepad"></i>
                 <h2>E-Sports Club</h2>
                 <p>Sign in to access your dashboard</p>
             </div>
-
             <div class="auth-tabs">
                 <button class="tab-btn active" data-tab="login" onclick="switchAuthTab('login')">Sign In</button>
                 <button class="tab-btn" data-tab="register" onclick="switchAuthTab('register')">Create Account</button>
             </div>
-
-            <!-- 登录表单 -->
             <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label>Email Address</label>
@@ -253,8 +327,6 @@
                     Don't have an account? <a onclick="switchAuthTab('register')">Sign up</a>
                 </div>
             </form>
-
-            <!-- 注册表单 -->
             <form class="auth-form hidden" id="registerForm" onsubmit="handleRegister(event)">
                 <div class="form-group">
                     <label>Full Name</label>
@@ -291,9 +363,7 @@
                     Already have an account? <a onclick="switchAuthTab('login')">Sign in</a>
                 </div>
             </form>
-
             <div class="divider">or continue with</div>
-
             <div class="social-login">
                 <button class="google" onclick="socialLogin('Google')">
                     <i class="fab fa-google"></i> Google
@@ -305,23 +375,123 @@
         </div>
     </div>
 
+
     <!-- ==========================================
-    页脚
+    页脚 Footer
     ========================================== -->
     <footer>
         <div class="container">
             <div class="row g-4">
+                <!-- 左列：Logo + 社交链接 + Share -->
                 <div class="col-md-4">
                     <h5><i class="fas fa-gamepad me-2"></i>E-Sports Club</h5>
                     <p style="color: var(--text-secondary);">Building champions, creating legends. Join our community and compete at the highest level.</p>
-                    <div class="social-links d-flex gap-3">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-twitch"></i></a>
+                    
+                    <!-- 社交链接 + Share 在同一行 -->
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <!-- 原有的社交链接 -->
+                        <div class="social-links d-flex gap-2">
+                            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.twitch.tv" target="_blank"><i class="fab fa-twitch"></i></a>
+                        </div>
+                        
+                        <!-- 分隔线 -->
+                        <span style="color: var(--text-muted); opacity: 0.3;">|</span>
+                        
+                        <!-- Share 按钮组 -->
+                        <div class="social-share-wrapper d-flex align-items-center gap-2">
+                            <span class="share-label" style="color: var(--text-muted); font-size: 0.75rem; font-weight: 500;">
+                                Share:
+                            </span>
+                            <div class="social-share-buttons d-flex gap-1">
+                                <button class="btn-share facebook" onclick="shareOnFacebook()" title="Facebook" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#1877f2';this.style.color='#fff';this.style.borderColor='#1877f2'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="btn-share twitter" onclick="shareOnTwitter()" title="Twitter" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#000';this.style.color='#fff';this.style.borderColor='#000'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="btn-share linkedin" onclick="shareOnLinkedIn()" title="LinkedIn" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#0a66c2';this.style.color='#fff';this.style.borderColor='#0a66c2'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="btn-share whatsapp" onclick="shareOnWhatsApp()" title="WhatsApp" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#25d366';this.style.color='#fff';this.style.borderColor='#25d366'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="btn-share copy-link" onclick="copyPageLink()" title="Copy Link" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.borderColor='var(--accent-cyan)';this.style.color='var(--accent-cyan)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="col-md-2">
                     <h5>Quick Links</h5>
                     <div class="footer-links d-flex flex-column">
@@ -331,6 +501,7 @@
                         <a href="team.html">Team</a>
                     </div>
                 </div>
+                
                 <div class="col-md-2">
                     <h5>Resources</h5>
                     <div class="footer-links d-flex flex-column">
@@ -340,6 +511,7 @@
                         <a href="contact.html">Contact</a>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
                     <h5><i class="fas fa-envelope me-2"></i>Stay Updated</h5>
                     <p style="color: var(--text-secondary);">Subscribe to our newsletter for the latest updates.</p>
@@ -351,6 +523,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="copyright text-center">
                 <p>&copy; 2026 E-Sports Club. All Rights Reserved. | Built with <i class="fas fa-heart" style="color: var(--accent-pink);"></i></p>
             </div>
@@ -362,16 +535,17 @@
     <script src="js/script.js"></script>
     <script src="js/effects.js"></script>
 
+    <!-- ==========================================
+    自定义脚本 (登录/注册 + 音视频控制)
+    ========================================== -->
     <script>
         // ==========================================
         // 🔐 登录/注册功能
         // ==========================================
 
-        // 打开弹窗，可指定默认 tab
         function openAuthModal(tab) {
             document.getElementById('authModal').classList.add('open');
             document.body.style.overflow = 'hidden';
-            
             if (tab === 'register') {
                 switchAuthTab('register');
             } else {
@@ -406,10 +580,6 @@
             }
         }
 
-        // ==========================================
-        // 真实登录效果 (存储在 localStorage)
-        // ==========================================
-
         function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
@@ -420,24 +590,17 @@
                 return;
             }
             
-            // 检查是否已注册
             const users = JSON.parse(localStorage.getItem('esports_users')) || [];
             const foundUser = users.find(u => u.email === email && u.password === password);
             
             if (foundUser) {
-                // 登录成功
-                const session = {
-                    name: foundUser.name,
-                    email: foundUser.email,
-                    loggedIn: true
-                };
+                const session = { name: foundUser.name, email: foundUser.email, loggedIn: true };
                 localStorage.setItem('esports_session', JSON.stringify(session));
                 updateUserUI(session);
                 closeAuthModal();
                 showToast('✅ Welcome back, ' + foundUser.name + '!');
                 document.getElementById('loginForm').reset();
             } else {
-                // 检查用户是否存在
                 const userExists = users.some(u => u.email === email);
                 if (userExists) {
                     showToast('❌ Incorrect password. Please try again.');
@@ -467,19 +630,15 @@
                 return;
             }
             
-            // 检查邮箱是否已注册
             const users = JSON.parse(localStorage.getItem('esports_users')) || [];
             if (users.some(u => u.email === email)) {
                 showToast('❌ This email is already registered. Please login.');
                 return;
             }
             
-            // 保存新用户
-            const newUser = { name, email, password };
-            users.push(newUser);
+            users.push({ name, email, password });
             localStorage.setItem('esports_users', JSON.stringify(users));
             
-            // 自动登录
             const session = { name, email, loggedIn: true };
             localStorage.setItem('esports_session', JSON.stringify(session));
             updateUserUI(session);
@@ -508,10 +667,6 @@
             closeAuthModal();
             showToast('✅ Signed in with ' + provider + '!');
         }
-
-        // ==========================================
-        // UI 更新函数
-        // ==========================================
 
         function updateUserUI(session) {
             const authButtons = document.getElementById('authButtons');
@@ -570,17 +725,125 @@
         }
 
         // ==========================================
+        // 🎵 音视频控制 (自动播放 · 电竞氛围)
+        // ==========================================
+
+        var audio = document.getElementById('bgAudio');
+        var video = document.getElementById('promoVideo');
+        var isPlaying = false;
+
+        // 页面加载后尝试自动播放 (静音策略)
+        document.addEventListener('DOMContentLoaded', function() {
+            // 视频自动播放 (静音)
+            if (video) {
+                video.muted = true;
+                video.play().catch(function(e) {
+                    console.log('⚠️ 视频自动播放被阻止，需要用户交互');
+                });
+            }
+
+            // 音频自动播放 (静音)
+            if (audio) {
+                audio.muted = true;
+                audio.volume = 0.2;
+                audio.play().catch(function(e) {
+                    console.log('⚠️ 音频自动播放被阻止，需要用户交互');
+                });
+                // 更新状态显示
+                document.getElementById('audioStatus').innerText = '🔇 已自动静音 (点击播放)';
+            }
+        });
+
+        function toggleAudio() {
+            var btn = document.getElementById('playBtn');
+            var status = document.getElementById('audioStatus');
+            if (audio.paused) {
+                audio.muted = false; // 用户点击后取消静音
+                audio.play().catch(function(e) {
+                    // 某些浏览器仍可能阻止
+                });
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+                status.innerText = '▶ 正在播放';
+                updateAudioProgress();
+            } else {
+                audio.pause();
+                btn.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying = false;
+                status.innerText = '⏸ 已暂停';
+            }
+        }
+
+        function updateAudioProgress() {
+            if (!isPlaying) return;
+            var progress = document.getElementById('audioProgress');
+            var timeDisplay = document.getElementById('audioTime');
+            var percent = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = percent + '%';
+            
+            var minutes = Math.floor(audio.currentTime / 60);
+            var seconds = Math.floor(audio.currentTime % 60);
+            timeDisplay.textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            
+            requestAnimationFrame(updateAudioProgress);
+        }
+
+        function seekAudio(e) {
+            var rect = e.currentTarget.getBoundingClientRect();
+            var x = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = x * audio.duration;
+        }
+
+        function setVolume(val) {
+            audio.volume = val;
+            if (val == 0) {
+                document.getElementById('volumeIcon').className = 'fas fa-volume-mute';
+            } else {
+                document.getElementById('volumeIcon').className = 'fas fa-volume-up';
+            }
+        }
+
+        function toggleVolume() {
+            var icon = document.getElementById('volumeIcon');
+            if (audio.muted) {
+                audio.muted = false;
+                icon.className = 'fas fa-volume-up';
+            } else {
+                audio.muted = true;
+                icon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        // 音频加载后显示总时长
+        audio.addEventListener('loadedmetadata', function() {
+            var totalMinutes = Math.floor(audio.duration / 60);
+            var totalSeconds = Math.floor(audio.duration % 60);
+            document.getElementById('audioTime').textContent = '0:00 / ' + totalMinutes + ':' + (totalSeconds < 10 ? '0' : '') + totalSeconds;
+        });
+
+        // 音频播放状态同步
+        audio.addEventListener('play', function() {
+            isPlaying = true;
+            document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
+            document.getElementById('audioStatus').innerText = '▶ 正在播放';
+            updateAudioProgress();
+        });
+        audio.addEventListener('pause', function() {
+            isPlaying = false;
+            document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
+            document.getElementById('audioStatus').innerText = '⏸ 已暂停';
+        });
+
+        // ==========================================
         // 页面初始化
         // ==========================================
 
         document.addEventListener('DOMContentLoaded', function() {
-            // 检查登录状态
             const session = JSON.parse(localStorage.getItem('esports_session'));
             if (session && session.loggedIn) {
                 updateUserUI(session);
             }
             
-            // 侧边栏高亮当前页面
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-link-side, .nav-link-mobile').forEach(link => {
                 const href = link.getAttribute('href');
