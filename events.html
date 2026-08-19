@@ -10,6 +10,15 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <!-- 在 head 标签中添加 EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<!-- ✅ 在 head 标签中添加 jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous">
+</script>
+</head>
 
     <!-- 额外样式修复 -->
     <style>
@@ -128,29 +137,7 @@
             box-shadow: 0 8px 35px rgba(255, 215, 0, 0.5);
         }
 
-        /* Toast 自定义样式已在 style.css 中有定义，这里补充 */
-        .toast-container-custom {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999999;
-            background: rgba(14, 22, 38, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 16px 28px;
-            color: #fff;
-            font-weight: 500;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
-            pointer-events: none;
-            font-family: 'Inter', sans-serif;
-            max-width: 90%;
-            text-align: center;
-        }
+    
         .toast-container-custom.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
@@ -174,18 +161,15 @@
                     <i class="fas fa-user-circle me-1"></i> Account
                 </button>
             </div>
-            <div id="userAvatarTop" class="user-avatar-top" style="display:none;">
-                <span id="userInitialTop">U</span>
-                <div class="dropdown-menu-top">
-                    <a href="#"><i class="fas fa-user"></i> My Profile</a>
-                    <a href="#"><i class="fas fa-trophy"></i> My Tournaments</a>
-                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
-                    <hr>
-                    <a href="#" class="danger" onclick="handleLogout(event)">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
-                    </a>
-                </div>
-            </div>
+            <!-- 已登录：显示用户头像 -->
+<div id="userAvatarTop" class="user-avatar-top" style="display:none;">
+    <span id="userInitialTop" onclick="toggleDropdown(event)">U</span>
+    <div class="dropdown-menu-top" id="userDropdownMenu">
+        <a href="#" class="danger" onclick="handleLogout(event)">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+        </a>
+    </div>
+</div>
         </div>
     </header>
 
@@ -235,23 +219,23 @@
     </nav>
 
     <!-- 移动端底部导航 -->
-    <nav class="mobile-bottom-nav">
-        <a href="index.html" class="nav-link-mobile">
-            <i class="fas fa-home"></i><span>Home</span>
-        </a>
-        <a href="tournaments.html" class="nav-link-mobile">
-            <i class="fas fa-trophy"></i><span>Events</span>
-        </a>
-        <a href="team.html" class="nav-link-mobile">
-            <i class="fas fa-users"></i><span>Team</span>
-        </a>
-        <a href="news.html" class="nav-link-mobile">
-            <i class="fas fa-newspaper"></i><span>News</span>
-        </a>
-        <a href="#" class="nav-link-mobile" onclick="openAuthModal('login'); return false;">
-            <i class="fas fa-user-circle"></i><span>Account</span>
-        </a>
-    </nav>
+<nav class="mobile-bottom-nav">
+    <a href="index.html" class="nav-link-mobile">
+        <i class="fas fa-home"></i><span>Home</span>
+    </a>
+    <a href="tournaments.html" class="nav-link-mobile">
+        <i class="fas fa-trophy"></i><span>Tournaments</span>
+    </a>
+    <a href="team.html" class="nav-link-mobile">
+        <i class="fas fa-users"></i><span>Team</span>
+    </a>
+    <a href="news.html" class="nav-link-mobile">
+        <i class="fas fa-newspaper"></i><span>News</span>
+    </a>
+    <a href="#" class="nav-link-mobile" onclick="openAuthModal('login'); return false;">
+        <i class="fas fa-user-circle"></i><span>Account</span>
+    </a>
+</nav>
 
     <!-- ==========================================
     Header Section
@@ -560,54 +544,157 @@
         </div>
     </div>
 
+
     <!-- ==========================================
     页脚 Footer
     ========================================== -->
-    <footer style="background-color: #070a1c; border-top: 2px solid #6c2bd9;" class="py-5">
+    <footer>
         <div class="container">
             <div class="row g-4">
+                <!-- 左列：Logo + 社交链接 + Share -->
                 <div class="col-md-4">
-                    <h5 class="text-white"><i class="fas fa-gamepad me-2" style="color:#ffd700;"></i>E-Sports Club</h5>
-                    <p style="color:#a0a0c0;">Building champions, creating legends. Join our community and compete at the highest level.</p>
-                    <div class="social-links d-flex gap-3">
-                        <a href="https://www.facebook.com" target="_blank" style="color:#ffd700;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.twitter.com" target="_blank" style="color:#ffd700;"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com" target="_blank" style="color:#ffd700;"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com" target="_blank" style="color:#ffd700;"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.twitch.tv" target="_blank" style="color:#ffd700;"><i class="fab fa-twitch"></i></a>
+                    <h5><i class="fas fa-gamepad me-2"></i>E-Sports Club</h5>
+                    <p style="color: var(--text-secondary);">Building champions, creating legends. Join our community and compete at the highest level.</p>
+                    
+                    <!-- 社交链接 + Share 在同一行 -->
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <!-- 原有的社交链接 -->
+                        <div class="social-links d-flex gap-2">
+                            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.twitch.tv" target="_blank"><i class="fab fa-twitch"></i></a>
+                        </div>
+                        
+                        <!-- 分隔线 -->
+                        <span style="color: var(--text-muted); opacity: 0.3;">|</span>
+                        
+                        <!-- Share 按钮组 -->
+                        <div class="social-share-wrapper d-flex align-items-center gap-2">
+                            <span class="share-label" style="color: var(--text-muted); font-size: 0.75rem; font-weight: 500;">
+                                Share:
+                            </span>
+                            <div class="social-share-buttons d-flex gap-1">
+                                <button class="btn-share facebook" onclick="shareOnFacebook()" title="Facebook" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#1877f2';this.style.color='#fff';this.style.borderColor='#1877f2'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="btn-share twitter" onclick="shareOnTwitter()" title="Twitter" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#000';this.style.color='#fff';this.style.borderColor='#000'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="btn-share linkedin" onclick="shareOnLinkedIn()" title="LinkedIn" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#0a66c2';this.style.color='#fff';this.style.borderColor='#0a66c2'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="btn-share whatsapp" onclick="shareOnWhatsApp()" title="WhatsApp" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.background='#25d366';this.style.color='#fff';this.style.borderColor='#25d366'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="btn-share copy-link" onclick="copyPageLink()" title="Copy Link" style="
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    border: 1px solid rgba(255, 255, 255, 0.08);
+                                    background: rgba(255, 255, 255, 0.04);
+                                    color: var(--text-secondary);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    font-size: 0.75rem;
+                                " onmouseover="this.style.borderColor='var(--accent-cyan)';this.style.color='var(--accent-cyan)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='var(--text-secondary)';this.style.borderColor='rgba(255,255,255,0.08)'">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="col-md-2">
-                    <h5 class="text-white">Quick Links</h5>
+                    <h5>Quick Links</h5>
                     <div class="footer-links d-flex flex-column">
-                        <a href="index.html" style="color:#a0a0c0;text-decoration:none;">Home</a>
-                        <a href="about.html" style="color:#a0a0c0;text-decoration:none;">About</a>
-                        <a href="tournaments.html" style="color:#a0a0c0;text-decoration:none;">Tournaments</a>
-                        <a href="team.html" style="color:#a0a0c0;text-decoration:none;">Team</a>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="tournaments.html">Tournaments</a>
+                        <a href="team.html">Team</a>
                     </div>
                 </div>
+                
                 <div class="col-md-2">
-                    <h5 class="text-white">Resources</h5>
+                    <h5>Resources</h5>
                     <div class="footer-links d-flex flex-column">
-                        <a href="events.html" style="color:#a0a0c0;text-decoration:none;">Events</a>
-                        <a href="gallery.html" style="color:#a0a0c0;text-decoration:none;">Gallery</a>
-                        <a href="news.html" style="color:#a0a0c0;text-decoration:none;">News</a>
-                        <a href="contact.html" style="color:#a0a0c0;text-decoration:none;">Contact</a>
+                        <a href="events.html">Events</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="news.html">News</a>
+                        <a href="contact.html">Contact</a>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
-                    <h5 class="text-white"><i class="fas fa-envelope me-2" style="color:#ffd700;"></i>Stay Updated</h5>
-                    <p style="color:#a0a0c0;">Subscribe to our newsletter for the latest updates.</p>
+                    <h5><i class="fas fa-envelope me-2"></i>Stay Updated</h5>
+                    <p style="color: var(--text-secondary);">Subscribe to our newsletter for the latest updates.</p>
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Your email" style="border-radius:50px 0 0 50px; background:#0d0d26; color:#fff; border:1px solid #6c2bd9;">
-                        <button class="btn" style="border-radius:0 50px 50px 0; background-color:#ffd700; color:#0a0e27; border:none;" onclick="subscribeNewsletter()">
+                        <input type="email" class="form-control" placeholder="Your email" />
+                        <button class="btn btn-primary" onclick="subscribeNewsletter()">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="copyright text-center mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.1);">
-                <p class="mb-0" style="color:#8888aa;">&copy; 2026 E-Sports Club. All Rights Reserved. | Built with <i class="fas fa-heart" style="color:#ffd700;"></i></p>
+            
+            <div class="copyright text-center">
+                <p>&copy; 2026 E-Sports Club. All Rights Reserved. | Built with <i class="fas fa-heart" style="color: var(--accent-pink);"></i></p>
             </div>
         </div>
     </footer>
@@ -962,4 +1049,3 @@
 
 </body>
 </html>
-[file content end]
