@@ -1513,6 +1513,7 @@ footer .footer-links a:hover {
 .team-logo-card:nth-child(6) { animation-delay: 0.30s; }
 .team-logo-card:nth-child(7) { animation-delay: 0.35s; }
 .team-logo-card:nth-child(8) { animation-delay: 0.40s; }
+}
 
 @keyframes cardReveal {
     0% {
@@ -2067,5 +2068,4 @@ footer .footer-links a:hover {
     .share-label {
         font-size: 0.75rem;
     }
-}
 }
